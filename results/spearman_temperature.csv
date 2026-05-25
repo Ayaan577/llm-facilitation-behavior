@@ -1,0 +1,7 @@
+dimension,spearman_rho,p_value,significant_p05
+Novelty,-0.012,0.772,False
+Directiveness,-0.01,0.804,False
+Specificity,0.116,0.005,True
+Empathy,0.005,0.903,False
+Divergence,-0.056,0.17,False
+Phase_Appropriateness,-0.102,0.013,True

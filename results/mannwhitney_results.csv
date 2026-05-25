@@ -1,0 +1,7 @@
+dimension,human_median,llm_median,U_statistic,rank_biserial_r,CI_lower_95,CI_upper_95,p_bonferroni,post_hoc_power
+Novelty,0.742,0.593,30439,-0.537,-0.62,-0.45,<0.001,1.0
+Directiveness,0.021,0.036,19895,-0.005,,,1.000,0.05
+Specificity,0.397,0.416,14780,0.254,0.14,0.37,<0.001,1.0
+Empathy,0.0,0.0,20943,-0.058,,,1.000,0.21
+Divergence,0.54,0.744,8309,0.58,0.48,0.67,<0.001,1.0
+Phase_Appropriateness,0.0,0.0,13044,0.341,0.26,0.43,<0.001,1.0

@@ -1,0 +1,5 @@
+source,N,mean_words,sd_words
+human,199,23.5,12.7
+llm_t03,199,40.5,7.9
+llm_t07,199,38.5,7.5
+llm_t10,199,37.6,8.5
