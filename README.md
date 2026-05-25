@@ -51,7 +51,6 @@ llm-facilitation-behavior/
 │   ├── 04_statistical_analysis.py      # Mann-Whitney U, Bonferroni, power
 │   ├── 04b_train_directiveness.py      # DistilBERT classifier training
 │   ├── 05_generate_figures.py          # All publication figures
-│   ├── run_pipeline_resampled.py       # End-to-end pipeline (stages 3–5)
 │   └── compute_kappa.py               # Cohen's κ for inter-rater reliability
 ├── notebooks/
 │   └── colab_llm_inference.ipynb       # Google Colab notebook (T4 GPU, 4-bit quantization)
