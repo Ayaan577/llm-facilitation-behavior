@@ -1,21 +1,17 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://python.org)
-[![Status: Under Review](https://img.shields.io/badge/Status-Under%20Review-orange.svg)](#citation)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](notebooks/colab_llm_inference.ipynb)
 
 # LLM vs. Human Facilitation Behavior in Collaborative Design Meetings
 
 > **What Do LLMs Say That Human Facilitators Don't? A Computational Behavioral Analysis of AI vs. Human Collaborative Design Meeting Facilitation**
->
-> Anonymous Author(s) — Under review at *Computers in Human Behavior* (2026)
-
----
+***
 
 ## Abstract
 
 This study presents a quantitative behavioral comparison of human and LLM facilitation in collaborative design meetings. We analyze 199 matched facilitation move pairs from the AMI Meeting Corpus, comparing trained human facilitators (Project Managers) with Llama 3.1 8B Instruct across six behavioral dimensions: semantic novelty, directiveness, specificity, empathy, topic divergence, and phase appropriateness. Mann-Whitney U tests with Bonferroni correction reveal significant differences on four of six dimensions, with large effects for topic divergence (*r* = +0.58) and semantic novelty (*r* = −0.54). LLM facilitation is characterized by structured, coaching-style reframing; human facilitation by contextually embedded, semantically original responses.
 
----
+***
 
 ## Key Findings
 
@@ -32,7 +28,7 @@ This study presents a quantitative behavioral comparison of human and LLM facili
 - **15/20** highest-divergence LLM responses use directive reframing ("Let's take a step back...")
 - Results **replicate within the Ideate phase** subsample (*n* = 149), the largest segment
 
----
+***
 
 ## Repository Structure
 
@@ -65,14 +61,13 @@ llm-facilitation-behavior/
 │   ├── figure3_radar_profiles.png      # Normalized radar (Human + 3 LLM temps)
 │   ├── figure4_correlation_matrix.png  # Spearman inter-dimension correlations
 │   └── figure5_violin_distributions.png # Score distributions (Human vs LLM T=0.7)
-├── CITATION.cff
 ├── LICENSE
 ├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
 
----
+***
 
 ## Quickstart
 
@@ -91,7 +86,7 @@ python scripts/run_pipeline_resampled.py
 
 This reproduces all statistical tests and figures from the pre-computed feature scores.
 
----
+***
 
 ## Pipeline Overview
 
@@ -107,7 +102,7 @@ This reproduces all statistical tests and figures from the pre-computed feature 
 >
 > **Full reproduction:** Requires a GPU with ≥8 GB VRAM. Use the [Colab notebook](notebooks/colab_llm_inference.ipynb) for free-tier T4 access.
 
----
+***
 
 ## Data
 
@@ -130,7 +125,7 @@ Sample sizes: **199 human** PM turns × **3 temperatures** (0.3, 0.7, 1.0) = **5
 
 Raw AMI transcripts: [groups.inf.ed.ac.uk/ami/corpus](https://groups.inf.ed.ac.uk/ami/corpus/)
 
----
+***
 
 ## Statistical Results
 
@@ -145,7 +140,7 @@ Raw AMI transcripts: [groups.inf.ed.ac.uk/ami/corpus](https://groups.inf.ed.ac.u
 | Divergence | 0.540 | 0.744 | +0.58 | [+0.48, +0.67] | <0.001 | 1.00 |
 | Phase Approp. | 0.000 | 0.000 | +0.34 | [+0.26, +0.43] | <0.001 | 1.00 |
 
----
+***
 
 ## Reproducibility
 
@@ -160,24 +155,7 @@ Raw AMI transcripts: [groups.inf.ed.ac.uk/ami/corpus](https://groups.inf.ed.ac.u
 | Python | 3.10+ |
 | Approx. runtimes | Extraction: ~5 min · Inference: ~45 min (T4) · Analysis: ~30 sec |
 
----
-
-## Citation
-
-```bibtex
-@article{anonymous2026llm_facilitation,
-  title   = {What Do {LLMs} Say That Human Facilitators Don't? A Computational
-             Behavioral Analysis of {AI} vs.\ Human Collaborative Design
-             Meeting Facilitation},
-  author  = {Anonymous},
-  journal = {Computers in Human Behavior},
-  year    = {2026},
-  note    = {Under review},
-  url     = {https://github.com/Ayaan577/llm-facilitation-behavior}
-}
-```
-
----
+***
 
 ## License
 
