@@ -1,0 +1,58 @@
+
+DIRECTIVENESS ANNOTATION GUIDELINES
+====================================
+
+Task: For each facilitation move, assign a binary label:
+  1 = DIRECTIVE    (the facilitator tells, instructs, or steers)
+  0 = NON-DIRECTIVE (the facilitator asks, reflects, or holds space)
+
+DIRECTIVE (label = 1):
+  The facilitator explicitly directs the group's actions, assigns tasks,
+  prescribes methods, or structures the process with commands/instructions.
+
+  Linguistic markers:
+  - Imperative forms:  "Write down...", "Sketch three concepts...",
+                        "Start prototyping now."
+  - Let's + action:    "Let's use affinity mapping.", "Let's move to..."
+  - Requests:          "Can you each share one insight?",
+                        "I want you to rank these ideas."
+  - Method prescription: "Use the how-might-we template.",
+                         "Apply the SCAMPER technique."
+  - Time-boxing:       "We have 5 minutes for this.", "Let's time-box."
+  - Role assignment:   "You be the note-taker.", "Each team picks a presenter."
+  - Process steering:  "We need to move on.", "Now we do evaluation.",
+                        "Let's converge on one idea."
+
+NON-DIRECTIVE (label = 0):
+  The facilitator uses open questions, reflections, paraphrasing,
+  or exploratory prompts that leave the direction to the group.
+
+  Linguistic markers:
+  - Open questions:    "What feels most important to you?",
+                        "How might we look at this differently?"
+  - Reflections:       "It sounds like the team is leaning toward...",
+                        "I'm hearing that cost is a concern."
+  - Wondering:         "I wonder what assumptions we're making.",
+                        "I'm curious what drew you to that direction."
+  - Summaries:         "So far we've identified three pain points.",
+                        "The key themes seem to be..."
+  - Acknowledgment:    "That's an interesting perspective.",
+                        "I appreciate you raising that."
+  - Silence/space:     "Let's sit with that for a moment.",
+                        "Take a minute to think before we continue."
+
+EDGE CASES:
+  - "Let's take a step back and think about..." → DIRECTIVE (steers process)
+  - "What if we tried a different approach?"    → NON-DIRECTIVE (open question)
+  - "Let's brainstorm" (no specific method)     → DIRECTIVE (process command)
+  - "How might we..." (HMW question)            → NON-DIRECTIVE (open prompt)
+  - "Can you elaborate on that?"                → NON-DIRECTIVE (follow-up)
+  - "Can you write that on the whiteboard?"     → DIRECTIVE (specific action)
+
+INSTRUCTIONS:
+  1. Read each move in context-free isolation (ignore surrounding dialogue)
+  2. Enter 1 or 0 in the 'human_label' column
+  3. Use the 'notes' column for ambiguous cases
+  4. Do NOT look at the directiveness_score or classifier_label columns
+     while annotating — cover or hide those columns first
+  5. Aim for ~15-20 minutes total (~10 seconds per move)

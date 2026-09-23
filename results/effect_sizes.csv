@@ -1,0 +1,5 @@
+dimension,rank_biserial_r,cohen_magnitude,prob_superiority
+Divergence,0.58,Large,LLM higher 79.0%
+Novelty,-0.537,Large,Human higher 76.9%
+Phase_Appropriateness,0.341,Medium,LLM higher 67.1%
+Specificity,0.254,Small-medium,LLM higher 62.7%

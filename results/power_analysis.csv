@@ -1,0 +1,7 @@
+dimension,n_human,n_llm,effect_r,power,adequate
+novel_score,199,199,-0.5373,1.0,True
+directive_score,199,199,-0.0048,0.0511,False
+specificity_score,199,199,0.2536,0.9995,True
+empathy_score,199,199,-0.0577,0.2108,False
+divergence_score,199,199,0.5804,1.0,True
+phase_score,199,199,0.3413,1.0,True

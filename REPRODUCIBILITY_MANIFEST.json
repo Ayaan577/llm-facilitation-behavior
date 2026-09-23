@@ -1,0 +1,52 @@
+{
+  "study_name": "What Do LLMs Say That Human Facilitators Don't? A Computational Behavioral Analysis of AI vs. Human Collaborative Design Meeting Facilitation",
+  "repository_version": "1.0.0-canonical",
+  "audit_date": "2026-09-24",
+  "sample_size": {
+    "candidate_moves": 2685,
+    "sampled_human_contexts": 199,
+    "llm_responses_total": 597,
+    "feature_rows_total": 796
+  },
+  "model_configuration": {
+    "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+    "quantization": "4-bit bitsandbytes NF4, double quant, float16 compute",
+    "temperatures": [
+      0.3,
+      0.7,
+      1.0
+    ],
+    "max_new_tokens": 150,
+    "top_p": 0.9,
+    "context_truncation_words": 180
+  },
+  "sha256_hashes": {
+    "data/processed/facilitator_moves_candidates.csv": "6e6da486d4f83db2287067f2bd392fbba3b06a41c150c16ae45d9725ecb2db8a",
+    "data/processed/facilitator_moves_sampled_199.csv": "5407755a251335d748dda3092520e77645cfb61e7a0ea7d56f09d75c5f87164f",
+    "data/llm_responses.csv": "f7e7699dddf768fb4e55b8525fe9f7e7ec6a2fdb77ee6cf74a73416d17bc0cf9",
+    "data/features_processed.csv": "a121619e729920f9cf18f7b1e9ff4b7cdc76de93ef78442e23879dfa6a6c459f",
+    "results/mannwhitney_results.csv": "68d38c242ccd16ec02c3186ae5315333df47be6424e38e0284325a11e225564e",
+    "results/spearman_temperature.csv": "cf744dbeac014ec61a87110131842b6d8c7a43ae9c1c3ff90b6485cdee520b83",
+    "results/descriptive_stats.csv": "f59b5a1e191f6b9eb18232a57ac88e28a6cd19822a6879b1ac702339b5b4f604",
+    "results/effect_sizes.csv": "5b15a3e961470ebfba0b44e1faccc5dc31c25fa93d98e1a9717154ecff526ff8",
+    "results/length_robustness.csv": "b718760fbdfa065decf607bd0cbf8e4a574a46d55ab4627c5a25d75c98d770ed",
+    "results/mixed_effects_results.csv": "23071aa41eb4152be1bf43ce4301af4921034452f900b28d4c84bdcdfd0bfc86",
+    "results/robustness_table6.csv": "b558c61dd7d0da57c9e320834af791dba779e7a9aa071505cdadb9109bd56558",
+    "results/power_analysis.csv": "29a50929653d7e4d09de2ae3d42f8ec1b5a6038cdc4932d9343559a420445421",
+    "results/extreme_cases.csv": "9633cdbedb05702d1666ffca391129957fb571dd7e8784822dac2afadcd14619",
+    "validation/directiveness_annotation_task.csv": "3c9fb98e8b1dc2e98afc64f7a360806323b1ff07c408f6428e0e28309ea83209",
+    "validation/directiveness_annotation_filled.csv": "163fcc915327bf40365dd15c4b5fabc85bc290a78336342907c201009bbf3187",
+    "validation/agreement_results.csv": "06a4869b813f6a5c2b70a871a0f42943255fe00a00a1c40067798d4f2848d870"
+  },
+  "pipeline_scripts": {
+    "preprocessing": "scripts/01_preprocess.py",
+    "llm_generation": "scripts/02_generate_llm_responses.py",
+    "colab_generation_notebook": "notebooks/colab_llm_inference.ipynb",
+    "feature_extraction": "scripts/03_extract_features.py",
+    "main_statistical_analysis": "scripts/04_statistical_analysis.py",
+    "directiveness_training": "scripts/04b_train_directiveness.py",
+    "robustness_analysis": "scripts/05_robustness_analysis.py",
+    "figure_generation": "scripts/06_generate_figures.py",
+    "validation_harness": "scripts/validate_reproduction.py"
+  }
+}

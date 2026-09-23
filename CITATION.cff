@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+title: >-
+  What Do LLMs Say That Human Facilitators Don't? A Computational
+  Behavioral Analysis of AI vs. Human Collaborative Design Meeting
+  Facilitation
+message: >-
+  If you use this software or data, please cite the associated paper.
+type: software
+authors:
+  - name: Anonymous Author(s)
+repository-code: https://github.com/Ayaan577/llm-facilitation-behavior
+url: https://github.com/Ayaan577/llm-facilitation-behavior
+keywords:
+  - large language models
+  - facilitation
+  - design thinking
+  - collaborative design
+  - behavioral analysis
+  - AMI Meeting Corpus
+  - NLP
+  - human-AI comparison
+license: MIT
+date-released: "2026-01-01"
+preferred-citation:
+  type: article
+  title: >-
+    What Do LLMs Say That Human Facilitators Don't? A Computational
+    Behavioral Analysis of AI vs. Human Collaborative Design Meeting
+    Facilitation
+  authors:
+    - name: Anonymous Author(s)
+  journal: Computers in Human Behavior
+  year: 2026
+  status: under-review
+  url: https://github.com/Ayaan577/llm-facilitation-behavior

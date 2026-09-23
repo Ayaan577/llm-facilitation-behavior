@@ -1,0 +1,16 @@
+metric,value,interpretation
+cohens_kappa,-0.0231,Slight/poor
+observed_agreement,0.54,
+accuracy,0.54,
+precision,0.3438,
+recall,0.3056,
+f1_score,0.3235,
+spearman_rho,0.1075,p=2.87e-01
+point_biserial_r,0.0081,p=9.36e-01
+n_annotated,100.0,
+n_directive_human,36.0,
+n_nondirective_human,64.0,
+true_positives,11.0,
+false_positives,21.0,
+false_negatives,25.0,
+true_negatives,43.0,
