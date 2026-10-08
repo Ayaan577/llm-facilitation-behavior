@@ -13,9 +13,9 @@ Official code and dataset repository for the paper:
 
 ## Abstract
 
-Large language models are increasingly being explored as facilitators, but the behavioral differences between LLM-generated and human facilitation remain insufficiently characterized. This repository supports a context-matched computational comparison of naturally occurring human Project Manager facilitation turns and Llama 3.1 8B Instruct responses across 199 paired contexts from the AMI Meeting Corpus. Five confirmatory dimensions were tested with paired Wilcoxon signed-rank tests and one Bonferroni correction: a result is significant when its raw $p$ is below $0.010$, equivalently when $p_\text{Bonf}=\min(1,5p)$ is below $0.05$. Human facilitation was higher on contextual semantic distance ($r = 0.644$) and hedge-and-empathy lexical density ($r = 0.203$, raw $p = 0.00415$, $p_\text{Bonf} = 0.021$). Llama-generated facilitation was higher on topic divergence ($r = 0.703$), surface lexical elaboration ($r = 0.288$, length-confounded), and instruction-conditioned phase-vocabulary alignment ($r = 0.382$). Directiveness is exploratory only because domain validation failed ($\kappa = -0.02$). A secondary no-phase check left the Llama-higher phase contrast in place ($r = 0.294$) and did not establish spontaneous phase awareness. These are computational language measures, not measures of facilitation quality.
+Large language models are increasingly being explored as facilitators, but the behavioral differences between LLM-generated and human facilitation remain insufficiently characterized. This repository supports a context-matched computational comparison of human Project Manager facilitation turns from scenario-based AMI design meetings and Llama 3.1 8B Instruct responses across 199 paired contexts. Five confirmatory dimensions were tested with paired Wilcoxon signed-rank tests and one Bonferroni correction: a result is significant when its raw $p$ is below $0.010$, equivalently when $p_\text{Bonf}=\min(1,5p)$ is below $0.05$. Human facilitation was higher on contextual semantic distance ($r = 0.644$) and hedge-and-empathy lexical density ($r = 0.203$, raw $p = 0.00415$, $p_\text{Bonf} = 0.021$). Llama-generated facilitation was higher on topic divergence ($r = 0.703$), surface lexical elaboration ($r = 0.288$, length-confounded), and instruction-conditioned phase-vocabulary alignment ($r = 0.382$). Directiveness is exploratory only because domain validation failed ($\kappa = -0.02$). A secondary no-phase check left the Llama-higher phase contrast in place ($r = 0.294$) and did not establish spontaneous phase awareness. These are computational language measures, not measures of facilitation quality.
 
-The authoritative manuscript is [`paper/main_ieee.tex`](paper/main_ieee.tex), compiled as [`paper/main_ieee.pdf`](paper/main_ieee.pdf). [`paper/main_chb.tex`](paper/main_chb.tex) is a superseded draft that still reports the original Mann–Whitney analysis. Do not cite it.
+The authoritative manuscript is [`arxiv_submission/main.tex`](arxiv_submission/main.tex), compiled as [`paper/main.pdf`](paper/main.pdf). Earlier draft files have been removed from this repository.
 
 ---
 
@@ -56,7 +56,7 @@ llm-facilitation-behavior/
 │   ├── temperature_repeated.csv            # Within-context temperature tests
 │   └── extreme_cases.csv                   # Extreme case pairs for inspection
 ├── scripts/
-│   ├── 01_preprocess.py                    # Corpus parsing and stratified sampling
+│   ├── 01_preprocess.py                    # Corpus parsing; keeps the stored 199 context IDs
 │   ├── 02_generate_llm_responses.py        # Llama 3.1 8B Instruct inference
 │   ├── 03_extract_features.py              # Six behavioral scores
 │   ├── 04_statistical_analysis.py          # Paired Wilcoxon primary analysis
@@ -71,16 +71,17 @@ llm-facilitation-behavior/
 ├── figures/
 │   ├── figure1_violin_distributions.png    # Figure 1: Violin plots across 6 dimensions
 │   ├── figure2_correlation_matrix.png      # Figure 2: Inter-dimension Spearman correlations
-│   ├── figure3_pca_biplot.png              # Figure 3: PCA facilitation style space
+│   ├── figure3_pca_biplot.png              # Exploratory PCA of behavioral scores
 │   ├── figure4_temperature_heatmap.png     # Figure 4: Temperature sensitivity heatmap
 │   ├── figure5_radar_profiles.png          # Mean scores, one scale per dimension
 │   ├── figure6_effect_forest.png           # Signed effect sizes for the five confirmatory tests
 │   └── figure7_nophase_means.png           # Human, label-present, and no-label phase means
+├── arxiv_submission/                       # Source to upload to arXiv
+│   ├── main.tex
+│   ├── references.bib
+│   └── figures/
 ├── paper/
-│   ├── main_ieee.tex                       # Authoritative manuscript
-│   ├── main_ieee.pdf
-│   ├── main_chb.tex                        # Superseded draft; do not cite
-│   └── main_chb.bib
+│   └── main.pdf                            # Compiled preprint
 ├── validation/
 │   ├── directiveness_annotation_task.csv  # Stratified 100 AMI move validation sample
 │   ├── directiveness_annotation_filled.csv# Filled human annotations
@@ -189,14 +190,13 @@ python scripts/validate_reproduction.py
 
 ## Figure Mapping
 
-- **Figure 1:** `figures/figure1_violin_distributions.png` — Score distributions for Human vs LLM T=0.7.
-- **Figure 2:** `figures/figure2_correlation_matrix.png` — Inter-dimension Spearman correlation heatmap.
-- **Figure 3:** `figures/figure3_pca_biplot.png` — PCA biplot of facilitation style space.
-- **Figure 4:** `figures/figure4_temperature_heatmap.png` — Temperature correlation heatmap.
-- **Figure 5:** `figures/figure5_radar_profiles.png` — Mean scores at $T=0.7$, one panel per dimension with its own scale.
-- **Effect-size figure:** `figures/figure6_effect_forest.png` — Signed $r$ for the five confirmatory dimensions. Negative values are human-higher.
-- **No-phase figure:** `figures/figure7_nophase_means.png` — Phase-vocabulary means for human turns, label-present Llama responses, and no-label Llama responses.
-- Correlation, PCA, and the temperature heatmap are supporting figures. They are not the main result.
+Filenames keep their original numbers. The preprint numbers them by order of appearance.
+
+- **Preprint Figure 1:** `figures/figure6_effect_forest.png` — Signed effect sizes. Negative values are human-higher.
+- **Preprint Figure 2:** `figures/figure1_violin_distributions.png` — Score distributions at $T = 0.7$.
+- **Preprint Figure 3:** `figures/figure5_radar_profiles.png` — Mean scores, one scale per dimension.
+- **Preprint Figure 4:** `figures/figure7_nophase_means.png` — Human, label-present, and no-label phase means.
+- **Appendix:** `figures/figure2_correlation_matrix.png`, `figures/figure3_pca_biplot.png` (exploratory PCA of behavioral scores), and `figures/figure4_temperature_heatmap.png`. These are not the main result.
 
 ---
 

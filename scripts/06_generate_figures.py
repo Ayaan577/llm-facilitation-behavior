@@ -37,7 +37,7 @@ FEATURE_LABELS_SHORT = {
     "novel_score":        "Ctx. Distance",
     "directive_score":    "Directiveness",
     "specificity_score":  "Lex. Elab.",
-    "empathy_score":      "Empathy Dens.",
+    "empathy_score":      "Hedge/Empathy",
     "divergence_score":   "Topic Diverg.",
     "phase_score":        "Phase Align.",
 }
@@ -89,7 +89,7 @@ def figure1_violin_distributions(df):
         ax.set_title(FEATURE_LABELS_SHORT[feat], fontweight="bold")
         ax.set_ylabel("Score")
 
-    fig.suptitle("Figure 1: Behavioral Dimension Distributions (Human vs. LLM T=0.7)", fontsize=14, y=0.98)
+    fig.suptitle("Score distributions at T = 0.7", fontsize=14, y=0.98)
     fig.tight_layout()
     path = os.path.join(FIG_DIR, "figure1_violin_distributions.png")
     fig.savefig(path, dpi=300, bbox_inches="tight")
@@ -110,7 +110,7 @@ def figure2_correlation_matrix(df):
     ax.set_yticks(range(len(FEATURES)))
     ax.set_xticklabels(labels, rotation=45, ha="right")
     ax.set_yticklabels(labels)
-    ax.set_title("Figure 2: Spearman Inter-Dimension Correlation Matrix", pad=12)
+    ax.set_title("Spearman correlations among behavioral scores", pad=12)
 
     for i in range(len(FEATURES)):
         for j in range(len(FEATURES)):
@@ -166,7 +166,7 @@ def figure3_pca_biplot(df):
 
     ax.set_xlabel(f"PC1 ({var1:.1f}% variance)")
     ax.set_ylabel(f"PC2 ({var2:.1f}% variance)")
-    ax.set_title("Figure 3: Facilitation Style Space (PCA)")
+    ax.set_title("Exploratory PCA of Behavioral Scores")
     ax.legend(handles=handles, loc="upper right", framealpha=0.9)
     fig.tight_layout()
     path = os.path.join(FIG_DIR, "figure3_pca_biplot.png")
@@ -190,7 +190,7 @@ def figure4_temperature_heatmap(df_corr):
     ax.set_xticklabels(labels, fontsize=10)
     ax.set_yticks([0])
     ax.set_yticklabels(["Temperature"], fontsize=10)
-    ax.set_title("Figure 4: Spearman Correlation (LLM Temperature vs. Dimensions)", pad=10)
+    ax.set_title("Descriptive association of decoding temperature with scores", pad=10)
 
     for j, (rho, p) in enumerate(zip(rhos[0], pvals)):
         sig = "*" if p < 0.05 else ""
