@@ -22,7 +22,7 @@ The compiled manuscript is [`paper/main.pdf`](paper/main.pdf).
 ## Key Findings
 
 | Dimension | Direction (T=0.7) | Effect (*r*) | 95% CI |
-|---|---|---|---|---|
+|---|---|---|---|
 | **Topic divergence** | LLM higher | 0.703 | [0.63, 0.76] |
 | **Contextual distance** | Human higher | 0.644 | [0.56, 0.72] |
 | **Phase-vocabulary alignment** | LLM higher | 0.382 | [0.25, 0.50] |
