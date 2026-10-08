@@ -2,9 +2,9 @@
 01_preprocess.py - Parse real AMI Meeting Corpus into structured DataFrame,
 extract candidate facilitator moves, and select the canonical 199 sampled contexts.
 
-Pipeline for LLM Facilitation Behavioral Study:
-"What Do LLMs Say That Human Facilitators Don't?
- A Computational Behavioral Analysis of AI vs. Human Collaborative Design Meeting Facilitation"
+Pipeline for:
+"Human and LLM Facilitation in Collaborative Design Meetings:
+ A Computational Behavioral Comparison"
 
 AMI format: each CSV row = one full meeting. Speakers: A/B/C/D
 (Speaker D = Project Manager/facilitator in most AMI meetings).

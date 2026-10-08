@@ -1,19 +1,16 @@
-dimension,analysis_type,sample_n,effect_size,p_bonferroni,significant,note
-novel_score,length_matched_subsampling,72,-0.3094,0.024525534300069107,True,n=72 per group matched by word count
-directive_score,length_matched_subsampling,72,-0.1775,1.0,False,n=72 per group matched by word count
-specificity_score,length_matched_subsampling,72,0.7064,4.6678581340472205e-12,True,n=72 per group matched by word count
-empathy_score,length_matched_subsampling,72,-0.1449,1.0,False,n=72 per group matched by word count
-divergence_score,length_matched_subsampling,72,0.4988,4.342747146605435e-06,True,n=72 per group matched by word count
-phase_score,length_matched_subsampling,72,0.2807,0.005343165004511854,True,n=72 per group matched by word count
-novel_score,partial_spearman_length_controlled,398,-0.2308,5.901333083748153e-05,True,Spearman partial rho controlling for word count
-directive_score,partial_spearman_length_controlled,398,-0.1135,0.42394764706194604,False,Spearman partial rho controlling for word count
-specificity_score,partial_spearman_length_controlled,398,0.5057,5.708728303081259e-26,True,Spearman partial rho controlling for word count
-empathy_score,partial_spearman_length_controlled,398,-0.199,0.0011487773167768581,True,Spearman partial rho controlling for word count
-divergence_score,partial_spearman_length_controlled,398,0.4116,1.8796934621377225e-16,True,Spearman partial rho controlling for word count
-phase_score,partial_spearman_length_controlled,398,0.1774,0.006782199419546788,True,Spearman partial rho controlling for word count
-novel_score,linear_mixed_effects_session_random,398,-0.1426,8.726444501204568e-27,True,"Beta=-0.1426, SE=0.0131, z=-10.88"
-directive_score,linear_mixed_effects_session_random,398,0.005,1.0,False,"Beta=0.0050, SE=0.0372, z=0.13"
-specificity_score,linear_mixed_effects_session_random,398,0.0172,4.443011176301548e-06,True,"Beta=0.0172, SE=0.0035, z=4.95"
-empathy_score,linear_mixed_effects_session_random,398,-0.0108,0.0031803755497052054,True,"Beta=-0.0108, SE=0.0031, z=-3.47"
-divergence_score,linear_mixed_effects_session_random,398,0.1993,1.1232043076073623e-37,True,"Beta=0.1993, SE=0.0154, z=12.97"
-phase_score,linear_mixed_effects_session_random,398,0.01,3.946228947247765e-08,True,"Beta=0.0100, SE=0.0017, z=5.80"
+dimension,label,check,n,human_median,llm_median,effect_r,p_raw,significant
+novel_score,Contextual Semantic Distance,Length-matched (paired Wilcoxon),73,0.6497,0.5883,0.5144,1e-05,True
+specificity_score,Lexical Elaboration Proxy,Length-matched (paired Wilcoxon),73,0.3648,0.4205,0.8069,0.0,True
+empathy_score,Empathy Lexical Density,Length-matched (paired Wilcoxon),73,0.0,0.0,0.2311,0.04834,False
+divergence_score,Topic Divergence,Length-matched (paired Wilcoxon),73,0.5166,0.7407,0.712,0.0,True
+phase_score,Phase-Vocab Alignment,Length-matched (paired Wilcoxon),73,0.0,0.0213,0.487,3e-05,True
+novel_score,Contextual Semantic Distance,Partial Spearman (controlling word count),199,,,-0.1369,0.05391,False
+specificity_score,Lexical Elaboration Proxy,Partial Spearman (controlling word count),199,,,-0.5956,0.0,True
+empathy_score,Empathy Lexical Density,Partial Spearman (controlling word count),199,,,0.0684,0.33689,False
+divergence_score,Topic Divergence,Partial Spearman (controlling word count),199,,,-0.0266,0.709,False
+phase_score,Phase-Vocab Alignment,Partial Spearman (controlling word count),199,,,-0.0593,0.40538,False
+novel_score,Contextual Semantic Distance,MixedLM (random context intercept),398,,,-0.1426,0.0,True
+specificity_score,Lexical Elaboration Proxy,MixedLM (random context intercept),398,,,0.0172,0.0,True
+empathy_score,Empathy Lexical Density,MixedLM (random context intercept),398,,,-0.0108,0.00076,True
+divergence_score,Topic Divergence,MixedLM (random context intercept),398,,,0.1993,0.0,True
+phase_score,Phase-Vocab Alignment,MixedLM (random context intercept),398,,,0.01,0.0,True

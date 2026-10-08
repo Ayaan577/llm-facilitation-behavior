@@ -1,7 +1,7 @@
-dimension,spearman_rho,p_value,significant,n
-novel_score,-0.0119,0.7718431835697439,False,597
-directive_score,-0.0102,0.8037774676531775,False,597
-specificity_score,0.1162,0.004472887637033572,True,597
-empathy_score,0.005,0.9028973968210396,False,597
-divergence_score,-0.0563,0.1697279513124662,False,597
-phase_score,-0.1017,0.012956973499581838,True,597
+dimension,label,spearman_rho,p_value,significant,n_repeated_context,note
+novel_score,Contextual Semantic Distance,-0.0119,0.7718431835697439,False,597,N=597 = 199 contexts × 3 temps; repeated-context sensitivity analysis
+specificity_score,Lexical Elaboration Proxy,0.1162,0.004472887637033572,True,597,N=597 = 199 contexts × 3 temps; repeated-context sensitivity analysis
+empathy_score,Empathy Lexical Density,0.005,0.9028973968210396,False,597,N=597 = 199 contexts × 3 temps; repeated-context sensitivity analysis
+divergence_score,Topic Divergence,-0.0563,0.1697279513124662,False,597,N=597 = 199 contexts × 3 temps; repeated-context sensitivity analysis
+phase_score,Phase-Vocab Alignment,-0.1017,0.012956973499581838,True,597,N=597 = 199 contexts × 3 temps; repeated-context sensitivity analysis
+directive_score,Directiveness (Exploratory),-0.0102,0.8037774676531775,False,597,N=597 = 199 contexts × 3 temps; repeated-context sensitivity analysis

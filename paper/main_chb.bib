@@ -1,7 +1,7 @@
 % main_chb.bib — Bibliography for LLM Facilitation Behavioral Study
 
 @article{dubey2024llama3,
-  author  = {Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and others},
+  author  = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and others},
   title   = {The {Llama} 3 Herd of Models},
   journal = {arXiv preprint arXiv:2407.21783},
   year    = {2024}
@@ -31,7 +31,8 @@
   journal = {Journal of Machine Learning Research},
   volume  = {3},
   pages   = {993--1022},
-  year    = {2003}
+  year    = {2003},
+  url     = {https://jmlr.org/papers/v3/blei03a.html}
 }
 
 @article{brown2008,
@@ -47,20 +48,45 @@
 @inproceedings{carletta2005ami,
   author    = {Carletta, Jean and Ashby, Simone and Bourban, Sebastien and others},
   title     = {The {AMI} Meeting Corpus: A Pre-announcement},
-  booktitle = {Proceedings of the Second International Workshop on Machine Learning for Multimodal Interaction},
+  booktitle = {Machine Learning for Multimodal Interaction},
+  editor    = {Renals, Steve and Bengio, Samy},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {3869},
   pages     = {28--39},
-  year      = {2005},
-  publisher = {Springer}
+  year      = {2006},
+  publisher = {Springer},
+  address   = {Berlin},
+  doi       = {10.1007/11677482_3}
+}
+
+@article{carletta2006elra,
+  author  = {Carletta, Jean},
+  title   = {Announcing the {AMI} Meeting Corpus},
+  journal = {The {ELRA} Newsletter},
+  volume  = {11},
+  number  = {1},
+  pages   = {3--5},
+  year    = {2006},
+  note    = {January--March. Reproduced by the corpus maintainers at \url{https://groups.inf.ed.ac.uk/ami/corpus/overview.shtml}}
+}
+
+@misc{ami2006scenario,
+  author       = {{AMI Project}},
+  title        = {The {AMI} Meeting Corpus},
+  year         = {2006},
+  howpublished = {\url{https://www.idiap.ch/webarchives/sites/www.amiproject.org/ami-scientific-portal/meeting-corpus/}},
+  note         = {Official project description of the scenario meetings}
 }
 
 @inproceedings{chandrasegaran2019,
-  author    = {Chandrasegaran, Senthil and Bryan, Chris and Shidara, Hideki and Chuang, Tzu-Yang and Ma, Kwan-Liu},
+  author    = {Chandrasegaran, Senthil and Bryan, Chris and Shidara, Hidekazu and Chuang, Tung-Yen and Ma, Kwan-Liu},
   title     = {{TalkTraces}: Real-Time Capture and Visualization of Verbal Content in Meetings},
   booktitle = {Proceedings of the 2019 {CHI} Conference on Human Factors in Computing Systems},
   year      = {2019},
   pages     = {1--14},
   publisher = {ACM},
-  doi       = {10.1145/3290605.3300807}
+  doi       = {10.1145/3290605.3300807},
+  note      = {Art. no. 577}
 }
 
 @book{cross2011,
@@ -84,7 +110,8 @@
   volume  = {22},
   number  = {5},
   pages   = {425--437},
-  year    = {2001}
+  year    = {2001},
+  doi     = {10.1016/S0142-694X(01)00009-6}
 }
 
 @inproceedings{dove2017,
@@ -96,19 +123,23 @@
   publisher = {ACM}
 }
 
-@article{frich2019,
-  author  = {Frich, Jonas and Biskjaer, Michael Mose and Dalsgaard, Peter},
-  title   = {Twenty Years of Creativity Research in Human-Computer Interaction: Current State and Future Directions},
-  journal = {Proceedings of the 2019 Designing Interactive Systems Conference},
-  pages   = {1235--1257},
-  year    = {2019}
+@inproceedings{frich2019,
+  author    = {Frich, Jonas and Biskjaer, Michael Mose and Dalsgaard, Peter},
+  title     = {Twenty Years of Creativity Research in Human-Computer Interaction: Current State and Future Directions},
+  booktitle = {Proceedings of the 2018 Designing Interactive Systems Conference},
+  pages     = {1235--1257},
+  year      = {2018},
+  publisher = {ACM},
+  doi       = {10.1145/3196709.3196732}
 }
 
 @inproceedings{gmeiner2023,
-  author    = {Gmeiner, Florian and Yang, Humphrey and Yao, Lining and Holstein, Kenneth and Martelaro, Nikolas},
+  author    = {Gmeiner, Frederic and Yang, Humphrey and Yao, Lining and Holstein, Kenneth and Martelaro, Nikolas},
   title     = {Exploring Challenges and Opportunities to Support Designers in Learning to Co-create with {AI}-based Manufacturing Design Tools},
   booktitle = {Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+  pages     = {1--20},
   year      = {2023},
+  publisher = {ACM},
   doi       = {10.1145/3544548.3580999}
 }
 
@@ -116,16 +147,16 @@
   author       = {Honnibal, Matthew and Montani, Ines and Van Landeghem, Sofie and Boyd, Adriane},
   title        = {spaCy: Industrial-strength Natural Language Processing in {Python}},
   year         = {2020},
-  howpublished = {\url{https://doi.org/10.5281/zenodo.1212303}}
+  doi          = {10.5281/zenodo.1212303}
 }
 
-@article{kan2017,
-  author  = {Kan, Jeff W.T. and Gero, John S.},
-  title   = {Quantitative Methods for Studying Design Protocols},
-  journal = {Design Studies},
-  volume  = {48},
-  pages   = {55--79},
-  year    = {2017}
+@book{kan2017,
+  author    = {Kan, Jeff W. T. and Gero, John S.},
+  title     = {Quantitative Methods for Studying Design Protocols},
+  publisher = {Springer},
+  address   = {Dordrecht},
+  year      = {2017},
+  doi       = {10.1007/978-94-024-0984-0}
 }
 
 @inproceedings{lee2022,
@@ -134,7 +165,9 @@
   booktitle = {Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems},
   pages     = {1--19},
   year      = {2022},
-  publisher = {ACM}
+  publisher = {ACM},
+  doi       = {10.1145/3491102.3502030},
+  note      = {Art. no. 388}
 }
 
 @article{lin1991divergence,
@@ -158,10 +191,11 @@
 }
 
 @article{peng2025,
-  author  = {Yu, Cheng and Zheng, Pai and Peng, Tao and Xu, Xun and Vose, Sarah and Ren, Xiang},
+  author  = {Yu, Chunyang and Zheng, Pai and Peng, Tao and Xu, Xun and Vos, Steven and Ren, Xipei},
   title   = {Design meets {AI}: challenges and opportunities},
   journal = {Journal of Engineering Design},
   volume  = {36},
+  number  = {5--6},
   pages   = {637--641},
   year    = {2025},
   doi     = {10.1080/09544828.2025.2484085}
@@ -170,17 +204,23 @@
 @inproceedings{reimers2019,
   author    = {Reimers, Nils and Gurevych, Iryna},
   title     = {Sentence-{BERT}: Sentence Embeddings using {S}iamese {BERT}-Networks},
-  booktitle = {Proceedings of EMNLP-IJCNLP 2019},
+  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)},
   pages     = {3982--3992},
-  year      = {2019}
+  year      = {2019},
+  publisher = {Association for Computational Linguistics},
+  address   = {Hong Kong, China},
+  doi       = {10.18653/v1/D19-1410}
 }
 
-@article{rosenthal1994parametric,
-  author  = {Rosenthal, Robert},
-  title   = {Parametric Measures of Effect Size},
-  journal = {The Handbook of Research Synthesis},
-  pages   = {231--244},
-  year    = {1994}
+@incollection{rosenthal1994parametric,
+  author    = {Rosenthal, Robert},
+  title     = {Parametric Measures of Effect Size},
+  booktitle = {The Handbook of Research Synthesis},
+  editor    = {Cooper, Harris and Hedges, Larry V.},
+  pages     = {231--244},
+  year      = {1994},
+  publisher = {Russell Sage Foundation},
+  address   = {New York}
 }
 
 @book{schon1983,
@@ -198,11 +238,12 @@
   volume  = {30},
   number  = {S1},
   pages   = {19--33},
-  year    = {2013}
+  year    = {2013},
+  doi     = {10.1111/jpim.12061}
 }
 
 @article{starostka2021,
-  author  = {Starostka, Justyna and Evald, Majbritt Rostgaard and Clarke, Ann H{\o}jbjerg and Hansen, Poul Rind},
+  author  = {Starostka, Justyna and Evald, Majbritt Rostgaard and Clarke, Ann H{\o}jbjerg and Hansen, Per Richard},
   title   = {Taxonomy of design thinking facilitation},
   journal = {Creativity and Innovation Management},
   volume  = {30},
@@ -219,7 +260,8 @@
   volume  = {23},
   number  = {5},
   pages   = {473--496},
-  year    = {2002}
+  year    = {2002},
+  doi     = {10.1016/S0142-694X(02)00004-2}
 }
 
 @inproceedings{yuan2022,
@@ -228,7 +270,8 @@
   booktitle = {Proceedings of the 27th International Conference on Intelligent User Interfaces},
   pages     = {841--852},
   year      = {2022},
-  publisher = {ACM}
+  publisher = {ACM},
+  doi       = {10.1145/3490099.3511105}
 }
 
 @article{cohen1960coefficient,
@@ -249,4 +292,44 @@
   number  = {1},
   pages   = {159--174},
   year    = {1977}
+}
+
+@article{dong2024facilitation,
+  author  = {Dong, Yihan and Ding, Shiyao and Ito, Takayuki},
+  title   = {An Automated Multi-Phase Facilitation Agent Based on {LLM}},
+  journal = {IEICE Transactions on Information and Systems},
+  volume  = {E107-D},
+  number  = {4},
+  pages   = {426--433},
+  year    = {2024},
+  doi     = {10.1587/transinf.2023IHP0011}
+}
+
+@article{alsobay2026table,
+  author  = {Alsobay, Mohammed and Rothschild, David M. and Hofman, Jake M. and Goldstein, Daniel G.},
+  title   = {Bringing Everyone to the Table: An Experimental Study of {LLM}-Facilitated Group Decision Making},
+  journal = {Proceedings of the ACM on Human-Computer Interaction},
+  volume  = {10},
+  number  = {6},
+  pages   = {1--36},
+  year    = {2026},
+  doi     = {10.1145/3816907}
+}
+
+@article{tsirmpas2026facilitate,
+  author  = {Tsirmpas, Dimitris and Korre, Katerina and Pavlopoulos, John},
+  title   = {To Facilitate or not to Facilitate: Human and {LLM} Facilitator Tendencies in Online Discussions},
+  journal = {arXiv preprint arXiv:2607.28643},
+  year    = {2026}
+}
+
+@article{wilcoxon1945,
+  author  = {Wilcoxon, Frank},
+  title   = {Individual comparisons by ranking methods},
+  journal = {Biometrics Bulletin},
+  year    = {1945},
+  volume  = {1},
+  number  = {6},
+  pages   = {80--83},
+  doi     = {10.2307/3001968}
 }

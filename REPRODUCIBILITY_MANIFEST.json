@@ -1,12 +1,13 @@
 {
-  "study_name": "What Do LLMs Say That Human Facilitators Don't? A Computational Behavioral Analysis of AI vs. Human Collaborative Design Meeting Facilitation",
+  "study_name": "Human and LLM Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison",
   "repository_version": "1.0.0-canonical",
-  "audit_date": "2026-09-24",
+  "audit_date": "2026-10-08",
   "sample_size": {
     "candidate_moves": 2685,
     "sampled_human_contexts": 199,
     "llm_responses_total": 597,
-    "feature_rows_total": 796
+    "feature_rows_total": 796,
+    "nophase_responses_total": 597
   },
   "model_configuration": {
     "model_id": "meta-llama/Llama-3.1-8B-Instruct",
@@ -18,22 +19,28 @@
     ],
     "max_new_tokens": 150,
     "top_p": 0.9,
-    "context_truncation_words": 180
+    "context_truncation_words": 180,
+    "nophase_prompt": "phase label line removed; seed 42; same temperatures and sampling"
   },
   "sha256_hashes": {
     "data/processed/facilitator_moves_candidates.csv": "6e6da486d4f83db2287067f2bd392fbba3b06a41c150c16ae45d9725ecb2db8a",
     "data/processed/facilitator_moves_sampled_199.csv": "5407755a251335d748dda3092520e77645cfb61e7a0ea7d56f09d75c5f87164f",
     "data/llm_responses.csv": "f7e7699dddf768fb4e55b8525fe9f7e7ec6a2fdb77ee6cf74a73416d17bc0cf9",
     "data/features_processed.csv": "a121619e729920f9cf18f7b1e9ff4b7cdc76de93ef78442e23879dfa6a6c459f",
-    "results/mannwhitney_results.csv": "68d38c242ccd16ec02c3186ae5315333df47be6424e38e0284325a11e225564e",
-    "results/spearman_temperature.csv": "cf744dbeac014ec61a87110131842b6d8c7a43ae9c1c3ff90b6485cdee520b83",
-    "results/descriptive_stats.csv": "f59b5a1e191f6b9eb18232a57ac88e28a6cd19822a6879b1ac702339b5b4f604",
-    "results/effect_sizes.csv": "5b15a3e961470ebfba0b44e1faccc5dc31c25fa93d98e1a9717154ecff526ff8",
+    "results/mannwhitney_results.csv": "dbe34cf18193f0869481f36750b3f0ec7f4243d59f9ce364475ff861ebe69c3e",
+    "results/spearman_temperature.csv": "95dc5cb30aca114464ef918090586a3cbb1a635116f22940073794d44e1f38f7",
+    "results/descriptive_stats.csv": "cd99134e1402f6a9f26087b36128aa391bdc860eabb9f133d401edab59908617",
+    "results/effect_sizes.csv": "b3a0fa9ec7595e1b9a39a0344745fac9a8ef561672dfded751992fc40227fa2e",
     "results/length_robustness.csv": "b718760fbdfa065decf607bd0cbf8e4a574a46d55ab4627c5a25d75c98d770ed",
     "results/mixed_effects_results.csv": "23071aa41eb4152be1bf43ce4301af4921034452f900b28d4c84bdcdfd0bfc86",
-    "results/robustness_table6.csv": "b558c61dd7d0da57c9e320834af791dba779e7a9aa071505cdadb9109bd56558",
-    "results/power_analysis.csv": "29a50929653d7e4d09de2ae3d42f8ec1b5a6038cdc4932d9343559a420445421",
-    "results/extreme_cases.csv": "9633cdbedb05702d1666ffca391129957fb571dd7e8784822dac2afadcd14619",
+    "results/robustness_table6.csv": "b49b396eee40b7266ad4ea78424a7d3033e8527dd38b991ce1ef04d5de2bea0a",
+    "results/power_analysis.csv": "6a6fee537ee8f9e636c8150e6ba14c2de880ba4a54809288b5900791054377b6",
+    "results/extreme_cases.csv": "2891cd66b42942d8b3f25d21f27afbda5d5596b22cb0bd28311a45eaaed8df63",
+    "data/llm_responses_nophase.csv": "1ce59fec53fb614dea3d64730c40c5eac7ca36c5329d6a25613dcf2bc92b1225",
+    "results/phase_nophase_comparison.csv": "6f4a4292c76ac31ce3a9133e708b40dfdf60e2b7f0451754f4968f0a350c687c",
+    "results/lda_topic_sensitivity.csv": "aa0ce5e5e8069a844c7bdf34c50eb79a82fa0400c07fb1b7b50f1cf012d32df2",
+    "results/sensitivity_analyses.csv": "180f1c243328662612e8451153843ff5364328fe039ca146ce9839c9081511ff",
+    "results/temperature_repeated.csv": "cedcbf6215486410904c144c2ec219dee3c6152226a519560fb59920e4334b63",
     "validation/directiveness_annotation_task.csv": "3c9fb98e8b1dc2e98afc64f7a360806323b1ff07c408f6428e0e28309ea83209",
     "validation/directiveness_annotation_filled.csv": "163fcc915327bf40365dd15c4b5fabc85bc290a78336342907c201009bbf3187",
     "validation/agreement_results.csv": "06a4869b813f6a5c2b70a871a0f42943255fe00a00a1c40067798d4f2848d870"
@@ -47,6 +54,8 @@
     "directiveness_training": "scripts/04b_train_directiveness.py",
     "robustness_analysis": "scripts/05_robustness_analysis.py",
     "figure_generation": "scripts/06_generate_figures.py",
+    "phase_nophase_sensitivity": "scripts/07_phase_nophase.py",
+    "positioning_figures": "scripts/08_positioning_figures.py",
     "validation_harness": "scripts/validate_reproduction.py"
   }
 }

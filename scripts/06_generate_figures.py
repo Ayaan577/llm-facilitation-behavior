@@ -34,12 +34,12 @@ FEATURES = ["novel_score", "directive_score", "specificity_score",
             "empathy_score", "divergence_score", "phase_score"]
 
 FEATURE_LABELS_SHORT = {
-    "novel_score":        "Novelty",
+    "novel_score":        "Ctx. Distance",
     "directive_score":    "Directiveness",
-    "specificity_score":  "Specificity",
-    "empathy_score":      "Empathy",
-    "divergence_score":   "Divergence",
-    "phase_score":        "Phase App.",
+    "specificity_score":  "Lex. Elab.",
+    "empathy_score":      "Empathy Dens.",
+    "divergence_score":   "Topic Diverg.",
+    "phase_score":        "Phase Align.",
 }
 SOURCE_COLORS  = {"human": "#2196F3", "llm_t03": "#4CAF50",
                   "llm_t07": "#FF9800", "llm_t10": "#F44336"}
@@ -100,18 +100,8 @@ def figure1_violin_distributions(df):
 # ── Figure 2: Spearman Correlation Matrix ─────────────────────────────────────
 def figure2_correlation_matrix(df):
     print("  Generating Figure 2: Correlation Matrix...")
-    from scipy.stats import spearmanr
-
     labels = [FEATURE_LABELS_SHORT[f] for f in FEATURES]
-    corr_matrix = np.zeros((len(FEATURES), len(FEATURES)))
-
-    for i, f1 in enumerate(FEATURES):
-        for j, f2 in enumerate(FEATURES):
-            if i == j:
-                corr_matrix[i, j] = 1.0
-            else:
-                rho, _ = spearmanr(df[f1].dropna(), df[f2].dropna())
-                corr_matrix[i, j] = rho
+    corr_matrix = df[FEATURES].corr(method="spearman").values
 
     fig, ax = plt.subplots(figsize=(7, 6))
     im = ax.imshow(corr_matrix, cmap="coolwarm", vmin=-0.5, vmax=0.5)
@@ -219,30 +209,29 @@ def figure4_temperature_heatmap(df_corr):
 
 # ── Figure 5: Radar Profiles ──────────────────────────────────────────────────
 def figure5_radar_profiles(df):
-    print("  Generating Figure 5: Radar Profiles...")
-    human_means  = df[df["source"] == "human"][FEATURES].mean().values
-    llm07_means  = df[df["source"] == "llm_t07"][FEATURES].mean().values
+    """Separate panels, each starting at zero, so small means stay visible."""
+    print("  Generating Figure 5: Separate-scale mean profiles...")
+    human = df[df["source"] == "human"]
+    llm = df[df["source"] == "llm_t07"]
     labels = [FEATURE_LABELS_SHORT[f] for f in FEATURES]
-    N = len(FEATURES)
-
-    angles = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
-    angles += angles[:1]
-
-    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
-
-    for vals, color, name in [(human_means, "#2196F3", "Human"),
-                               (llm07_means, "#FF9800", "LLM T=0.7")]:
-        v = vals.tolist() + vals[:1].tolist()
-        ax.plot(angles, v, "o-", linewidth=2, color=color, label=name)
-        ax.fill(angles, v, alpha=0.18, color=color)
-
-    ax.set_xticks(angles[:-1])
-    ax.set_xticklabels(labels, size=10)
-    ax.set_ylim(0, max(human_means.max(), llm07_means.max()) * 1.25 + 0.02)
-    ax.set_title("Figure 5: Facilitation Style Profiles (Human vs. LLM T=0.7)", size=12, pad=20)
-    ax.legend(loc="upper right", bbox_to_anchor=(1.35, 1.15), framealpha=0.9)
-    ax.grid(True, alpha=0.35)
-
+    fig, axes = plt.subplots(2, 3, figsize=(7.4, 4.8))
+    for ax, feat, label in zip(axes.ravel(), FEATURES, labels):
+        h = float(human[feat].mean())
+        lmean = float(llm[feat].mean())
+        bars = ax.bar([0, 1], [h, lmean], color=["#2196F3", "#FF9800"], width=0.72)
+        ax.set_xticks([0, 1])
+        ax.set_xticklabels(["Human", "LLM"], fontsize=8)
+        top = max(h, lmean, 1e-6) * 1.55
+        ax.set_ylim(0, top)
+        title = label + (" (exploratory)" if feat == "directive_score" else "")
+        ax.set_title(title, fontsize=10)
+        for bar, val in zip(bars, (h, lmean)):
+            ax.text(bar.get_x() + bar.get_width() / 2, val + top * 0.04,
+                    f"{val:.3f}", ha="center", va="bottom", fontsize=8)
+        ax.tick_params(axis="y", labelsize=7)
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+    fig.suptitle("Mean scores at T = 0.7 (each panel has its own scale)", fontsize=11)
     fig.tight_layout()
     path = os.path.join(FIG_DIR, "figure5_radar_profiles.png")
     fig.savefig(path, dpi=300, bbox_inches="tight")

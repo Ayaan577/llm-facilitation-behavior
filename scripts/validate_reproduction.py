@@ -11,7 +11,7 @@ Verifies all 11 repository fidelity & paper reproduction constraints:
 7. Required feature columns exist (novel_score, directive_score, specificity_score, empathy_score, divergence_score, phase_score)
 8. Main statistical output tables exist
 9. Robustness Table 6 output exists
-10. All 5 figure files exist (figure1 to figure5)
+10. Manuscript figure files exist (figure1 to figure7)
 11. Canonical file SHA-256 hashes match REPRODUCIBILITY_MANIFEST.json
 """
 import os, sys, json, hashlib
@@ -33,6 +33,8 @@ REQUIRED_FIGURES = [
     "figure3_pca_biplot.png",
     "figure4_temperature_heatmap.png",
     "figure5_radar_profiles.png",
+    "figure6_effect_forest.png",
+    "figure7_nophase_means.png",
 ]
 
 REQUIRED_RESULTS = [
@@ -182,10 +184,10 @@ def main():
     fig_dir = os.path.join(BASE, "figures")
     missing_figs = [f for f in REQUIRED_FIGURES if not os.path.exists(os.path.join(fig_dir, f))]
     if not missing_figs:
-        results_summary.append(("10. All 5 Figures Present", "PASS", "figure1 through figure5 exist"))
+        results_summary.append(("10. Manuscript Figures Present", "PASS", "figure1 through figure7 exist"))
         passed_checks += 1
     else:
-        results_summary.append(("10. All 5 Figures Present", "FAIL", f"Missing figures: {missing_figs}"))
+        results_summary.append(("10. Manuscript Figures Present", "FAIL", f"Missing figures: {missing_figs}"))
 
     # --- Check 11: Manifest SHA-256 Hashes Match ---
     if os.path.exists(MANIFEST_PATH):

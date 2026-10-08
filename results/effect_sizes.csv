@@ -1,5 +1,7 @@
-dimension,rank_biserial_r,cohen_magnitude,prob_superiority
-Divergence,0.58,Large,LLM higher 79.0%
-Novelty,-0.537,Large,Human higher 76.9%
-Phase_Appropriateness,0.341,Medium,LLM higher 67.1%
-Specificity,0.254,Small-medium,LLM higher 62.7%
+dimension,label,status,effect_size_r,p_value,p_bonferroni,significant
+novel_score,Contextual Semantic Distance,Confirmatory,0.6435,1.1103182250477e-19,5.5515911252385005e-19,True
+specificity_score,Lexical Elaboration Proxy,Confirmatory,0.2879,4.882435185318018e-05,0.00024412175926590091,True
+empathy_score,Empathy Lexical Density,Confirmatory,0.2032,0.004149505398907352,0.02074752699453676,True
+divergence_score,Topic Divergence,Confirmatory,0.7028,3.591279527483086e-23,1.7956397637415431e-22,True
+phase_score,Phase-Vocab Alignment,Confirmatory,0.3823,6.935945841720072e-08,3.467972920860036e-07,True
+directive_score,Directiveness (Exploratory),Exploratory,0.0256,0.7183275319152954,0.7183275319152954,False

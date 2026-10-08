@@ -1,76 +1,52 @@
-# Paper-to-Code Provenance & Reproducibility Notes
+# Paper-to-Code Provenance
 
-**Study Title:** "What Do LLMs Say That Human Facilitators Don't? A Computational Behavioral Analysis of AI vs. Human Collaborative Design Meeting Facilitation"
+**Study title:** Human and LLM Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison
 
----
+**Authoritative manuscript:** `paper/main_ieee.tex`  
+**Superseded draft:** `paper/main_chb.tex` still reports the original unpaired Mann–Whitney analysis. Do not cite it.
 
-## 1. Complete Pipeline Provenance Map
+The primary test is a paired Wilcoxon signed-rank comparison of human Project Manager turns and Llama 3.1 8B Instruct responses at temperature 0.7, with one Bonferroni correction across five confirmatory dimensions. `results/mannwhitney_results.csv` keeps its historical filename. It stores the paired Wilcoxon results.
+
+## Pipeline
 
 ```
-Raw AMI Corpus (train/validation/test splits)
+AMI Meeting Corpus
     │
-    ▼ [scripts/01_preprocess.py]
-Candidate Facilitation Moves (2,685 candidate contexts)
-    │   -> data/processed/facilitator_moves_candidates.csv
-    ▼ [scripts/01_preprocess.py - Stratified Random Sampling]
-Sampled Contexts (199 matched facilitation contexts)
-    │   -> data/processed/facilitator_moves_sampled_199.csv
-    ▼ [notebooks/colab_llm_inference.ipynb / scripts/02_generate_llm_responses.py]
-LLM Response Generation (Llama 3.1 8B Instruct, 4-bit NF4, float16, T=0.3, 0.7, 1.0)
-    │   -> data/llm_responses.csv (199 rows × 3 temps = 597 LLM responses)
-    ▼ [scripts/03_extract_features.py]
-Behavioral Feature Vector Extraction (6 dimensions × 4 sources = 796 feature rows)
-    │   -> data/features_processed.csv
-    ├──► [scripts/04_statistical_analysis.py]
-    │        ├── Mann-Whitney U tests + Bonferroni -> results/mannwhitney_results.csv
-    │        ├── Temperature Spearman correlations -> results/spearman_temperature.csv
-    │        ├── Power analysis -> results/power_analysis.csv
-    │        └── Extreme case analysis -> results/extreme_cases.csv
+    ▼ scripts/01_preprocess.py
+2,685 candidate facilitation moves
+199 sampled contexts (149 Ideate, 50 Prototype/Evaluate)
     │
-    ├──► [scripts/05_robustness_analysis.py]
-    │        ├── Length-matched subsampling (n=72) -> results/robustness_table6.csv
-    │        ├── Partial Spearman correlations -> results/robustness_table6.csv
-    │        └── Linear mixed-effects (MixedLM) -> results/mixed_effects_results.csv
+    ▼ notebooks/colab_llm_inference.ipynb or scripts/02_generate_llm_responses.py
+data/llm_responses.csv
+199 contexts × temperatures 0.3, 0.7, 1.0
     │
-    └──► [scripts/06_generate_figures.py]
-             ├── Figure 1: Violin Distributions -> figures/figure1_violin_distributions.png
-             ├── Figure 2: Spearman Correlation Matrix -> figures/figure2_correlation_matrix.png
-             ├── Figure 3: PCA Biplot -> figures/figure3_pca_biplot.png
-             ├── Figure 4: Temperature Heatmap -> figures/figure4_temperature_heatmap.png
-             └── Figure 5: Radar Profiles -> figures/figure5_radar_profiles.png
+    ▼ secondary generation, phase line removed, seed 42
+data/llm_responses_nophase.csv
+    │
+    ▼ scripts/03_extract_features.py
+data/features_processed.csv (796 rows)
+    │
+    ├── scripts/04_statistical_analysis.py
+    │     paired Wilcoxon, descriptive temperature correlations,
+    │     bootstrap intervals, extreme cases
+    ├── scripts/05_robustness_analysis.py
+    │     length matching (n = 73), duplicate-context removal,
+    │     LDA topic counts, TF–IDF distance, mixed-effects models
+    ├── scripts/07_phase_nophase.py
+    │     secondary human vs no-label and label vs no-label tests
+    ├── scripts/06_generate_figures.py
+    └── scripts/08_positioning_figures.py
+          plots already published effect sizes; it does not recompute tests
 ```
 
----
+## What the current code matches
 
-## 2. Documented Discrepancies & Resolutions
+- Contextual semantic distance is $1 - \cos$, using `all-MiniLM-L6-v2`. The manuscript uses the same formula. An earlier draft divided by 2; that version is not the result-producing formula.
+- Length-matched analysis uses pairs whose relative word-count difference is below 0.50. The current count is $n = 73$, not the earlier unpaired $n = 72$ analysis.
+- Mixed-effects models use `is_llm` as a fixed effect and `context_id` as a random intercept.
+- The no-phase file is a secondary sensitivity check. It is not a sixth confirmatory dimension.
+- Figure 6 and Figure 7 are drawn from the published statistics by `scripts/08_positioning_figures.py`.
 
-### Discrepancy 1: Semantic Novelty Formula Equation vs. Feature Data
-- **Manuscript Text:** Defines $F_1 = (1 - \text{cosine\_similarity}) / 2$.
-- **Result-Producing Data (`data/features_processed.csv`):** Stores $1 - \text{cosine\_similarity}$ directly, giving Human Median = 0.742 and LLM Median = 0.593 as reported in Table 1 of the paper.
-- **Resolution:** The result-producing implementation ($1 - \text{cosine\_similarity}$) is preserved in `scripts/03_extract_features.py` to ensure that running feature extraction produces the exact numbers currently printed in Table 1 of the paper. Rescaling linearly by $1/2$ preserves rank order, Mann-Whitney U statistics ($U=30438.5$), rank-biserial $r = -0.537$, and p-values ($p < 0.001$), but changes median values (0.371 vs 0.296). Flagged for author review if manuscript equation or table values are updated in future revisions.
+## Checked file hashes
 
-### Discrepancy 2: LLM Model & Generation Script
-- **Stale Script (`scripts/02_generate_llm_responses.py`):** Referenced Ollama / Phi-3 Mini.
-- **Published Experiment (`notebooks/colab_llm_inference.ipynb`):** Uses Meta Llama 3.1 8B Instruct with bitsandbytes 4-bit NF4 quantization, float16 compute, 180-word context window, top_p=0.9, max_new_tokens=150, temperatures 0.3, 0.7, 1.0.
-- **Resolution:** Updated `scripts/02_generate_llm_responses.py` to match the canonical Llama 3.1 8B Instruct pipeline. Preserved the existing result-producing `data/llm_responses.csv` (597 responses) byte-for-byte.
-
-### Discrepancy 3: Figure Numbering
-- **Original Code:** Used inconsistent figure names (`figure1_pca.png`, `figure2_boxplots.png`, etc.).
-- **Paper Manuscript:**
-  - Figure 1 = Violin Distributions
-  - Figure 2 = Spearman Correlation Matrix
-  - Figure 3 = PCA Biplot
-  - Figure 4 = Temperature Heatmap
-  - Figure 5 = Radar Profiles
-- **Resolution:** Synchronized `scripts/06_generate_figures.py` and output filenames in `figures/` to match manuscript numbering exactly.
-
----
-
-## 3. Robustness Analysis Exposure (Table 6)
-- **Status:** EXPOSED & VERIFIED
-- **Script:** `scripts/05_robustness_analysis.py`
-- **Outputs:** `results/robustness_table6.csv`, `results/length_robustness.csv`, `results/mixed_effects_results.csv`.
-- **Verified Values:**
-  - Length-matched ($n=72$ per group): Novelty $r = -0.309$ ($p=0.0245$), Specificity $r = +0.706$ ($p < 0.001$), Divergence $r = +0.499$ ($p < 0.001$).
-  - Partial Spearman (controlling for length): Novelty $\rho = -0.231$, Specificity $\rho = +0.506$, Divergence $\rho = +0.412$.
-  - MixedLM (session random intercept): Novelty $\beta = -0.1426$ ($p < 0.001$), Specificity $\beta = +0.0172$ ($p < 0.001$), Divergence $\beta = +0.1993$ ($p < 0.001$).
+`REPRODUCIBILITY_MANIFEST.json` lists SHA-256 hashes for the sampled contexts, both response files, the feature table, the result tables used in the manuscript, and the directiveness validation files. `scripts/validate_reproduction.py` checks those hashes.

@@ -14,20 +14,22 @@ This folder contains the processed datasets used in the study. Raw AMI Meeting C
 | `source` | str | `human`, `llm_t03`, `llm_t07`, or `llm_t10` |
 | `response_text` | str | The facilitation move text |
 | `session_phase` | str | Design phase: `Ideate` or `Prototype/Evaluate` |
-| `novel_score` | float | Semantic novelty: 1 − cosine_similarity(context, response) |
-| `directive_score` | float | P(directive) from fine-tuned DistilBERT classifier |
-| `specificity_score` | float | Composite: (NER density + TTR + mean_word_len / 10) / 3 |
-| `empathy_score` | float | Empathy + hedging lexicon density / total tokens |
+| `novel_score` | float | Contextual semantic distance: 1 − cosine similarity in `all-MiniLM-L6-v2` space |
+| `directive_score` | float | Exploratory P(directive) from a DistilBERT classifier. Domain validation failed |
+| `specificity_score` | float | Lexical elaboration proxy: (NER density + TTR + mean word length / 10) / 3 |
+| `empathy_score` | float | Hedge and empathy lexical density. Hedge-dominated; not psychological empathy |
 | `divergence_score` | float | Jensen–Shannon distance between LDA topic distributions |
-| `phase_score` | float | Proportion of tokens matching phase-specific vocabulary |
+| `phase_score` | float | Proportion of tokens matching the phase vocabulary |
 
 ### `llm_responses.csv` — Raw LLM outputs
 
-Contains the original Llama 3.1 8B Instruct responses at T = 0.3, 0.7, and 1.0 before feature extraction.
+Contains the label-present Llama 3.1 8B Instruct responses at T = 0.3, 0.7, and 1.0 before feature extraction. The prompt included the current design phase.
 
-### `directiveness_training.csv` — Classifier training data
+### `llm_responses_nophase.csv` — Secondary no-phase generation
 
-197 synthetic examples (99 directive, 98 open/facilitative) used to fine-tune the DistilBERT directiveness classifier.
+The same 199 contexts and sampling settings, with the explicit phase line removed and seed 42. Used only for the secondary phase-label sensitivity analysis.
+
+The synthetic directiveness training examples are written by `scripts/04b_train_directiveness.py` to `data/processed/directiveness_training_data.csv`. That generated file is not part of this release. The classifier remains exploratory because agreement with AMI turns was κ = −0.0231.
 
 ## Sample Sizes
 

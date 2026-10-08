@@ -1,0 +1,19 @@
+dimension,label,status,test,n_contexts,statistic,p_raw,p_bonferroni,significant_bonferroni,median_t03,median_t07,median_t10,term
+novel_score,Contextual semantic distance,Confirmatory,Friedman,199,0.4403,0.802417858550212,1.0,False,0.5866,0.5929,0.5841,
+novel_score,Contextual semantic distance,Confirmatory,MixedLM_vs_T0.7,199,0.0066,0.4466339617396795,,False,,,,"C(temperature, Treatment(reference=0.7))[T.0.3]"
+novel_score,Contextual semantic distance,Confirmatory,MixedLM_vs_T0.7,199,0.0001,0.9897381737827826,,False,,,,"C(temperature, Treatment(reference=0.7))[T.1.0]"
+specificity_score,Lexical elaboration proxy,Confirmatory,Friedman,199,4.0378,0.13280257027356993,0.6640128513678496,False,0.4123,0.4159,0.4219,
+specificity_score,Lexical elaboration proxy,Confirmatory,MixedLM_vs_T0.7,199,-0.002,0.4196898288419373,,False,,,,"C(temperature, Treatment(reference=0.7))[T.0.3]"
+specificity_score,Lexical elaboration proxy,Confirmatory,MixedLM_vs_T0.7,199,0.0046,0.06718491921586425,,False,,,,"C(temperature, Treatment(reference=0.7))[T.1.0]"
+empathy_score,Empathy lexical density,Confirmatory,Friedman,199,2.2059,0.33189348944227604,1.0,False,0.0192,0.0,0.0182,
+empathy_score,Empathy lexical density,Confirmatory,MixedLM_vs_T0.7,199,0.0038,0.09024379605903644,,False,,,,"C(temperature, Treatment(reference=0.7))[T.0.3]"
+empathy_score,Empathy lexical density,Confirmatory,MixedLM_vs_T0.7,199,0.0039,0.07799705614443615,,False,,,,"C(temperature, Treatment(reference=0.7))[T.1.0]"
+divergence_score,Topic divergence,Confirmatory,Friedman,199,5.4552,0.06537491572824626,0.3268745786412313,False,0.7491,0.7437,0.743,
+divergence_score,Topic divergence,Confirmatory,MixedLM_vs_T0.7,199,0.0055,0.3583413452336469,,False,,,,"C(temperature, Treatment(reference=0.7))[T.0.3]"
+divergence_score,Topic divergence,Confirmatory,MixedLM_vs_T0.7,199,-0.0047,0.43308356441327367,,False,,,,"C(temperature, Treatment(reference=0.7))[T.1.0]"
+phase_score,Phase-vocabulary alignment,Confirmatory,Friedman,199,5.6123,0.06043789719681764,0.30218948598408824,False,0.0222,0.0,0.0,
+phase_score,Phase-vocabulary alignment,Confirmatory,MixedLM_vs_T0.7,199,0.0035,0.06434325994251287,,False,,,,"C(temperature, Treatment(reference=0.7))[T.0.3]"
+phase_score,Phase-vocabulary alignment,Confirmatory,MixedLM_vs_T0.7,199,0.0004,0.8325412947120931,,False,,,,"C(temperature, Treatment(reference=0.7))[T.1.0]"
+directive_score,Directiveness (exploratory),Exploratory,Friedman,199,0.8499,0.653790396103739,0.653790396103739,False,0.0362,0.0356,0.0247,
+directive_score,Directiveness (exploratory),Exploratory,MixedLM_vs_T0.7,199,-0.0132,0.7084205237653802,,False,,,,"C(temperature, Treatment(reference=0.7))[T.0.3]"
+directive_score,Directiveness (exploratory),Exploratory,MixedLM_vs_T0.7,199,-0.0187,0.5942792351716173,,False,,,,"C(temperature, Treatment(reference=0.7))[T.1.0]"

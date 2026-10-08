@@ -1,32 +1,34 @@
-# What Do LLMs Say That Human Facilitators Don't? A Computational Behavioral Analysis of AI vs. Human Collaborative Design Meeting Facilitation
+# Human and LLM Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://python.org)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](notebooks/colab_llm_inference.ipynb)
 
 Official code and dataset repository for the paper:
-> **What Do LLMs Say That Human Facilitators Don't? A Computational Behavioral Analysis of AI vs. Human Collaborative Design Meeting Facilitation**
+> **Human and LLM Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison**
 >
-> *Mohammed Azeez Khan, Aaron D'Souza, Ashutosh Mishra, and Amar Kumar Behera*
+> *Mohammed Azeez Khan, Aaron D'Souza, Ashutosh Mishra, Ummul Faiz Z. Bibi, Neha K. Nair, and Amar Kumar Behera*
 
 ---
 
 ## Abstract
 
-This study presents a quantitative behavioral comparison of human and LLM facilitation in collaborative design meetings. We analyze 199 matched facilitation move pairs from the AMI Meeting Corpus, comparing trained human facilitators (Project Managers) with Llama 3.1 8B Instruct across six behavioral dimensions: semantic novelty, directiveness, specificity, empathy, topic divergence, and phase appropriateness. Mann-Whitney U tests with Bonferroni correction reveal significant differences on four of six dimensions, with large effects for topic divergence (*r* = +0.58) and semantic novelty (*r* = −0.54). LLM facilitation is characterized by structured, coaching-style reframing; human facilitation by contextually embedded, semantically original responses.
+Large language models are increasingly being explored as facilitators, but the behavioral differences between LLM-generated and human facilitation remain insufficiently characterized. This repository supports a context-matched computational comparison of naturally occurring human Project Manager facilitation turns and Llama 3.1 8B Instruct responses across 199 paired contexts from the AMI Meeting Corpus. Five confirmatory dimensions were tested with paired Wilcoxon signed-rank tests and one Bonferroni correction: a result is significant when its raw $p$ is below $0.010$, equivalently when $p_\text{Bonf}=\min(1,5p)$ is below $0.05$. Human facilitation was higher on contextual semantic distance ($r = 0.644$) and hedge-and-empathy lexical density ($r = 0.203$, raw $p = 0.00415$, $p_\text{Bonf} = 0.021$). Llama-generated facilitation was higher on topic divergence ($r = 0.703$), surface lexical elaboration ($r = 0.288$, length-confounded), and instruction-conditioned phase-vocabulary alignment ($r = 0.382$). Directiveness is exploratory only because domain validation failed ($\kappa = -0.02$). A secondary no-phase check left the Llama-higher phase contrast in place ($r = 0.294$) and did not establish spontaneous phase awareness. These are computational language measures, not measures of facilitation quality.
+
+The authoritative manuscript is [`paper/main_ieee.tex`](paper/main_ieee.tex), compiled as [`paper/main_ieee.pdf`](paper/main_ieee.pdf). [`paper/main_chb.tex`](paper/main_chb.tex) is a superseded draft that still reports the original Mann–Whitney analysis. Do not cite it.
 
 ---
 
 ## Key Findings
 
-| Dimension | Human vs. LLM (T=0.7) | Effect (*r*) | Magnitude | Practical Interpretation |
+| Dimension | Direction (T=0.7) | Effect (*r*) | 95% CI |
 |---|---|---|---|---|
-| **Divergence** | LLM higher | +0.58 | Large | LLM scores higher in 79.0% of pairs |
-| **Novelty** | Human higher | −0.54 | Large | Human scores higher in 76.9% of pairs |
-| **Phase Approp.** | LLM higher | +0.34 | Medium | LLM scores higher in 67.1% of pairs |
-| **Specificity** | LLM higher | +0.25 | Small–medium | LLM scores higher in 62.7% of pairs |
-| Directiveness | No difference detected | −0.005 | — | Underpowered (*power* = 0.05) |
-| Empathy | No difference detected | −0.058 | — | Underpowered (*power* = 0.21) |
+| **Topic divergence** | LLM higher | 0.703 | [0.63, 0.76] |
+| **Contextual distance** | Human higher | 0.644 | [0.56, 0.72] |
+| **Phase-vocabulary alignment** | LLM higher | 0.382 | [0.25, 0.50] |
+| **Lexical elaboration** | LLM higher | 0.288 | [0.16, 0.40] |
+| **Empathy-and-hedge density** | Human higher; hedge proxy | 0.203 | [0.07, 0.34] |
+| Directiveness (exploratory) | Not interpreted | 0.026 | [0.00, 0.17] |
 
 ---
 
@@ -39,24 +41,31 @@ llm-facilitation-behavior/
 │   │   ├── facilitator_moves_candidates.csv # 2,685 candidate facilitation moves
 │   │   ├── facilitator_moves_sampled_199.csv# 199 sampled facilitation moves
 │   │   └── directiveness_training_data.csv # 197 synthetic training examples
-│   ├── llm_responses.csv                   # 199 rows × 3 temps = 597 LLM responses
-│   ├── features_processed.csv              # 796 rows × 10 cols (199 human + 597 LLM)
+│   ├── llm_responses.csv                   # 199 rows × 3 temps = 597 label-present responses
+│   ├── llm_responses_nophase.csv           # Same 199 contexts, phase label removed
+│   ├── features_processed.csv              # 796 rows (199 human + 597 LLM)
 │   └── README.md                           # Dataset documentation
 ├── results/
-│   ├── mannwhitney_results.csv             # 18 Mann-Whitney U test comparisons
-│   ├── spearman_temperature.csv            # Temperature sensitivity correlations
-│   ├── robustness_table6.csv               # Table 6: Length matching, partial r, MixedLM
-│   ├── power_analysis.csv                  # Post-hoc power calculations
-│   └── extreme_cases.csv                   # Extreme case pairs for qualitative inspection
+│   ├── mannwhitney_results.csv             # Paired Wilcoxon results (historical filename)
+│   ├── spearman_temperature.csv            # Descriptive temperature correlations
+│   ├── robustness_table6.csv               # Length matching, length association, MixedLM
+│   ├── power_analysis.csv                  # Bootstrap confidence intervals for r
+│   ├── phase_nophase_comparison.csv        # Secondary phase-label sensitivity
+│   ├── lda_topic_sensitivity.csv           # Topic divergence across K = 5 to 30
+│   ├── sensitivity_analyses.csv            # Duplicate-context and related checks
+│   ├── temperature_repeated.csv            # Within-context temperature tests
+│   └── extreme_cases.csv                   # Extreme case pairs for inspection
 ├── scripts/
-│   ├── 01_preprocess.py                    # Corpus parsing & stratified 199 sampling
-│   ├── 02_generate_llm_responses.py        # Canonical Llama 3.1 8B Instruct inference
-│   ├── 03_extract_features.py              # Six behavioral dimension scoring
-│   ├── 04_statistical_analysis.py          # Main stats, correlations, power, extremes
-│   ├── 04b_train_directiveness.py          # Fine-tune DistilBERT classifier
-│   ├── 05_robustness_analysis.py          # Length matching, partial Spearman, MixedLM
-│   ├── 06_generate_figures.py              # Figures 1–5 generation
-│   └── validate_reproduction.py           # Automated 11-check reproducibility harness
+│   ├── 01_preprocess.py                    # Corpus parsing and stratified sampling
+│   ├── 02_generate_llm_responses.py        # Llama 3.1 8B Instruct inference
+│   ├── 03_extract_features.py              # Six behavioral scores
+│   ├── 04_statistical_analysis.py          # Paired Wilcoxon primary analysis
+│   ├── 04b_train_directiveness.py          # Exploratory DistilBERT classifier
+│   ├── 05_robustness_analysis.py           # Length, duplicates, LDA K, TF-IDF, MixedLM
+│   ├── 06_generate_figures.py              # Distribution, correlation, PCA, temperature, means
+│   ├── 07_phase_nophase.py                 # Secondary phase-label comparison
+│   ├── 08_positioning_figures.py           # Forest plot and no-phase means from published numbers
+│   └── validate_reproduction.py            # Reproducibility checks against the manifest
 ├── notebooks/
 │   └── colab_llm_inference.ipynb           # Free T4 GPU generation notebook on Colab
 ├── figures/
@@ -64,7 +73,14 @@ llm-facilitation-behavior/
 │   ├── figure2_correlation_matrix.png      # Figure 2: Inter-dimension Spearman correlations
 │   ├── figure3_pca_biplot.png              # Figure 3: PCA facilitation style space
 │   ├── figure4_temperature_heatmap.png     # Figure 4: Temperature sensitivity heatmap
-│   └── figure5_radar_profiles.png          # Figure 5: Radar profile comparison
+│   ├── figure5_radar_profiles.png          # Mean scores, one scale per dimension
+│   ├── figure6_effect_forest.png           # Signed effect sizes for the five confirmatory tests
+│   └── figure7_nophase_means.png           # Human, label-present, and no-label phase means
+├── paper/
+│   ├── main_ieee.tex                       # Authoritative manuscript
+│   ├── main_ieee.pdf
+│   ├── main_chb.tex                        # Superseded draft; do not cite
+│   └── main_chb.bib
 ├── validation/
 │   ├── directiveness_annotation_task.csv  # Stratified 100 AMI move validation sample
 │   ├── directiveness_annotation_filled.csv# Filled human annotations
@@ -96,6 +112,8 @@ python -m spacy download en_core_web_sm
 python scripts/04_statistical_analysis.py
 python scripts/05_robustness_analysis.py
 python scripts/06_generate_figures.py
+python scripts/07_phase_nophase.py
+python scripts/08_positioning_figures.py
 
 # Run validation harness
 python scripts/validate_reproduction.py
@@ -121,6 +139,8 @@ python scripts/validate_reproduction.py
    python scripts/04_statistical_analysis.py
    python scripts/05_robustness_analysis.py
    python scripts/06_generate_figures.py
+   python scripts/07_phase_nophase.py
+   python scripts/08_positioning_figures.py
    python scripts/validate_reproduction.py
    ```
 
@@ -132,12 +152,13 @@ python scripts/validate_reproduction.py
 |---|---|
 | **Corpus** | AMI Meeting Corpus (139 sessions) |
 | **Candidate Moves** | 2,685 candidate facilitation moves |
-| **Sampled Contexts** | 199 moves (stratified: 20% Empathize/Define, 50% Ideate, 30% Prototype/Evaluate) |
+| **Sampled Contexts** | 199 moves (149 Ideate, 50 Prototype/Evaluate; no Empathize/Define turns) |
 | **Context Window** | Preceding 5 turns (T-5 to T-1), max 180 words truncation |
 | **LLM Model** | Meta Llama 3.1 8B Instruct (`meta-llama/Llama-3.1-8B-Instruct`) |
 | **Quantization** | 4-bit `bitsandbytes` (NF4, double quant, float16 compute) |
-| **Hardware** | NVIDIA Tesla T4 GPU (16 GB VRAM) on Google Colab |
+| **Hardware** | Laptop: NVIDIA GeForce RTX 3050 Ti (4 GB) for analysis. Generation only: Tesla T4 (16 GB) on Google Colab |
 | **Generation Settings** | `do_sample=True`, `top_p=0.9`, `max_new_tokens=150`, temperatures = `[0.3, 0.7, 1.0]` |
+| **No-phase generation** | Same settings, phase line removed, seed 42. File: `data/llm_responses_nophase.csv`. Secondary only. |
 | **Quality Filter** | Min length 5 words, refusal detection, $<90\%$ n-gram overlap |
 | **Random Seeds** | `numpy=42`, `sklearn=42`, `LDA=42`, `subsampling=42` |
 
@@ -145,23 +166,24 @@ python scripts/validate_reproduction.py
 
 ## Behavioral Feature Definitions
 
-1. **Semantic Novelty (`novel_score`):** $1 - \cos(\mathbf{e}_{\text{ctx}}, \mathbf{e}_{\text{resp}})$ using SentenceTransformer `all-MiniLM-L6-v2`. (Note: Manuscript equation writes $(1-\cos)/2$; existing dataset stores $1-\cos$, yielding Human Mdn = 0.742 vs LLM Mdn = 0.593).
-2. **Directiveness (`directive_score`):** Probability $P(\text{directive})$ from fine-tuned DistilBERT model trained on 197 synthetic examples. Human validated on 100 AMI utterances ($\kappa = -0.0231$).
-3. **Specificity (`specificity_score`):** Mean of NER density, Type-Token Ratio (TTR), and normalized average word length ($\min(\text{AWL}/10, 1)$).
-4. **Empathy (`empathy_score`):** Density of empathy and hedging vocabulary terms.
-5. **Topic Divergence (`divergence_score`):** Jensen-Shannon distance (`scipy.spatial.distance.jensenshannon`) between topic distributions from 15-topic LDA model.
-6. **Phase Appropriateness (`phase_score`):** Proportion of phase-specific design thinking vocabulary tokens.
+1. **Contextual semantic distance (`novel_score`):** $1 - \cos(\mathbf{e}_{\text{ctx}}, \mathbf{e}_{\text{resp}})$ in `all-MiniLM-L6-v2` space (human median 0.742, LLM $T=0.7$ median 0.593). TF–IDF cosine distance does not reproduce this contrast. This is not a creativity score.
+2. **Directiveness (`directive_score`):** $P(\text{directive})$ from a DistilBERT classifier trained on 197 synthetic examples. Domain validation on 100 AMI utterances failed ($\kappa = -0.0231$). Exploratory only.
+3. **Lexical elaboration (`specificity_score`):** Mean of NER density, type–token ratio, and normalized average word length. A surface proxy, substantially associated with response length.
+4. **Hedge and empathy lexical density (`empathy_score`):** Empathy-word and hedge-word hits divided by tokens. Hedge-dominated. Not psychological empathy.
+5. **Topic divergence (`divergence_score`):** Jensen–Shannon distance between 15-topic LDA distributions. Greater divergence is not a creativity result.
+6. **Phase-vocabulary alignment (`phase_score`):** Proportion of tokens matching the phase vocabulary. The primary contrast is instruction-conditioned.
 
 ---
 
 ## Statistical Methodology
 
-- **Main Test:** Mann-Whitney U test across 18 comparisons (6 dimensions $\times$ 3 temperatures) with Bonferroni correction ($\alpha = 0.05 / 18 = 0.00278$).
-- **Temperature Correlations:** Spearman rank correlation $\rho$ between temperature ($0.3, 0.7, 1.0$) and feature scores.
-- **Robustness (Table 6):**
-  - *Length-Matched Subsampling:* 5 word-count bins, $n=72$ matched pairs.
-  - *Partial Correlations:* Spearman partial $\rho$ controlling for response length.
-  - *Linear Mixed-Effects:* `statsmodels` MixedLM with fixed effect `source` and random intercept `session_id`.
+- **Main Test:** Paired Wilcoxon signed-rank test, human vs. LLM at $T = 0.7$ ($n = 199$), Bonferroni correction over 5 confirmatory dimensions ($\alpha = 0.05 / 5 = 0.010$). Effect size $r = |Z|/\sqrt{n}$ uses the Wilcoxon $Z$, not a floored $p$-value. Directiveness is exploratory.
+- **Temperature:** Friedman test within context across $T = 0.3, 0.7, 1.0$ (Bonferroni over 5 confirmatory dimensions). Spearman correlations on the stacked 597 rows are descriptive only.
+- **Phase-label sensitivity:** `scripts/07_phase_nophase.py` rescores `data/llm_responses_nophase.csv` with the original phase-vocabulary function. At $T = 0.7$, no-phase responses remain higher than human turns ($r = 0.294$); label versus no label is not significant ($r = 0.123$, $p = 0.082$). This is not part of the confirmatory family.
+- **Robustness:**
+  - *Length-matched pairs:* relative word-count difference below 50% ($n=73$), paired Wilcoxon.
+  - *Length association:* Spearman correlation between the paired difference and human word count.
+  - *Linear mixed-effects:* `is_llm` fixed effect and random intercept for `context_id`.
 
 ---
 
@@ -171,7 +193,10 @@ python scripts/validate_reproduction.py
 - **Figure 2:** `figures/figure2_correlation_matrix.png` — Inter-dimension Spearman correlation heatmap.
 - **Figure 3:** `figures/figure3_pca_biplot.png` — PCA biplot of facilitation style space.
 - **Figure 4:** `figures/figure4_temperature_heatmap.png` — Temperature correlation heatmap.
-- **Figure 5:** `figures/figure5_radar_profiles.png` — Radar profiles comparing median facilitation styles.
+- **Figure 5:** `figures/figure5_radar_profiles.png` — Mean scores at $T=0.7$, one panel per dimension with its own scale.
+- **Effect-size figure:** `figures/figure6_effect_forest.png` — Signed $r$ for the five confirmatory dimensions. Negative values are human-higher.
+- **No-phase figure:** `figures/figure7_nophase_means.png` — Phase-vocabulary means for human turns, label-present Llama responses, and no-label Llama responses.
+- Correlation, PCA, and the temperature heatmap are supporting figures. They are not the main result.
 
 ---
 
@@ -179,9 +204,9 @@ python scripts/validate_reproduction.py
 
 ```bibtex
 @article{khan2026llm_facilitation,
-  title   = {What Do {LLMs} Say That Human Facilitators Don't? A Computational Behavioral Analysis of {AI} vs.\ Human Collaborative Design Meeting Facilitation},
-  author  = {Khan, Mohammed Azeez and D'Souza, Aaron and Mishra, Ashutosh and Behera, Amar Kumar},
-  journal = {Computers in Human Behavior},
+  title   = {Human and {LLM} Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison},
+  author  = {Khan, Mohammed Azeez and D'Souza, Aaron and Mishra, Ashutosh and Bibi, Ummul Faiz Z. and Nair, Neha K. and Behera, Amar Kumar},
+  journal = {arXiv preprint},
   year    = {2026},
   url     = {https://github.com/Ayaan577/llm-facilitation-behavior}
 }

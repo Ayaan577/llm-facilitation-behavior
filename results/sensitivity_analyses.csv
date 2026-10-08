@@ -1,0 +1,12 @@
+analysis,dimension,label,status,n_pairs,human_median,llm_median,human_mean,llm_mean,effect_r,p_raw,p_bonferroni,significant_bonferroni,direction
+unique_context_wilcoxon,novel_score,Contextual semantic distance,Confirmatory,136,0.753,0.5885,0.7361,0.5835,0.6778,2.6892427895463073e-15,1.3446213947731536e-14,True,human_higher
+unique_context_wilcoxon,specificity_score,Lexical elaboration proxy,Confirmatory,136,0.3951,0.4171,0.3953,0.4148,0.3258,0.00014519791050069381,0.0007259895525034691,True,llm_higher
+unique_context_wilcoxon,empathy_score,Empathy lexical density,Confirmatory,136,0.0,0.0,0.0296,0.0157,0.2763,0.0012699565070899866,0.006349782535449933,True,human_higher
+unique_context_wilcoxon,divergence_score,Topic divergence,Confirmatory,136,0.5326,0.7309,0.526,0.72,0.7121,1.0047506123628296e-16,5.023753061814148e-16,True,llm_higher
+unique_context_wilcoxon,phase_score,Phase-vocabulary alignment,Confirmatory,136,0.0,0.0,0.006,0.0149,0.3176,0.0002128439286388272,0.0010642196431941361,True,llm_higher
+unique_context_wilcoxon,directive_score,Directiveness (exploratory),Exploratory,136,0.0171,0.0432,0.2782,0.2789,0.0433,0.6133947386367835,0.6133947386367835,False,llm_higher
+tfidf_semantic_distance,tfidf_distance,TF-IDF contextual distance,Sensitivity,199,0.9101,0.907,0.8913,0.8883,0.002,0.9777577604480457,0.9777577604480457,False,human_higher
+joint_distance_and_divergence,novel_and_divergence,Human more distant and less topic-divergent,Sensitivity,199,,,,,0.6332,,,False,126_of_199
+empathy_dictionary,human,Token hits,Sensitivity,199,3.0,116.0,,,0.0252,,,False,empathy_share_of_hits
+empathy_dictionary,llm_t07,Token hits,Sensitivity,199,30.0,94.0,,,0.2419,,,False,empathy_share_of_hits
+phase_position_diagnostic,session_phase,Cannot rebuild full-session phase boundaries,Not run,0,0.6902,,,,,,,False,session length in all turns is not stored

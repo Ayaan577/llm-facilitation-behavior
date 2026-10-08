@@ -1,35 +1,57 @@
 cff-version: 1.2.0
 title: >-
-  What Do LLMs Say That Human Facilitators Don't? A Computational
-  Behavioral Analysis of AI vs. Human Collaborative Design Meeting
-  Facilitation
+  Human and LLM Facilitation in Collaborative Design Meetings: A
+  Computational Behavioral Comparison
 message: >-
   If you use this software or data, please cite the associated paper.
 type: software
 authors:
-  - name: Anonymous Author(s)
+  - family-names: Khan
+    given-names: Mohammed Azeez
+  - family-names: "D'Souza"
+    given-names: Aaron
+  - family-names: Mishra
+    given-names: Ashutosh
+  - family-names: Bibi
+    given-names: Ummul Faiz Z.
+  - family-names: Nair
+    given-names: Neha K.
+  - family-names: Behera
+    given-names: Amar Kumar
 repository-code: https://github.com/Ayaan577/llm-facilitation-behavior
 url: https://github.com/Ayaan577/llm-facilitation-behavior
 keywords:
+  - LLM facilitation
   - large language models
-  - facilitation
-  - design thinking
+  - human-AI collaboration
+  - human-LLM comparison
+  - meeting facilitation
   - collaborative design
+  - conversational AI
   - behavioral analysis
+  - design meetings
   - AMI Meeting Corpus
-  - NLP
-  - human-AI comparison
 license: MIT
 date-released: "2026-01-01"
 preferred-citation:
   type: article
   title: >-
-    What Do LLMs Say That Human Facilitators Don't? A Computational
-    Behavioral Analysis of AI vs. Human Collaborative Design Meeting
-    Facilitation
+    Human and LLM Facilitation in Collaborative Design Meetings: A
+    Computational Behavioral Comparison
   authors:
-    - name: Anonymous Author(s)
-  journal: Computers in Human Behavior
+    - family-names: Khan
+      given-names: Mohammed Azeez
+    - family-names: "D'Souza"
+      given-names: Aaron
+    - family-names: Mishra
+      given-names: Ashutosh
+    - family-names: Bibi
+      given-names: Ummul Faiz Z.
+    - family-names: Nair
+      given-names: Neha K.
+    - family-names: Behera
+      given-names: Amar Kumar
+  journal: arXiv preprint
   year: 2026
   status: under-review
   url: https://github.com/Ayaan577/llm-facilitation-behavior

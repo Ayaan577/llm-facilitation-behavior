@@ -58,3 +58,6 @@ mlruns/
 
 # ── Misc ──
 *.tmp
+
+# Duplicate of paper/main_ieee.pdf kept locally at the study root
+/main_ieee.pdf

@@ -13,6 +13,11 @@
 
 \begin{document}
 
+\begin{center}
+\textbf{Superseded draft.} The revised analysis is in \texttt{main\_ieee.tex}.\\
+This file still reports the original Mann--Whitney results and should not be cited.
+\end{center}
+
 \begin{frontmatter}
 
 \title{What Do LLMs Say That Human Facilitators Don't? \\
@@ -117,7 +122,7 @@ To evaluate the move extraction criteria, two independent coders annotated a ran
 
 \subsection{LLM Inference Setup}
 
-Matched LLM facilitation responses were generated using Meta Llama~3.1~8B~Instruct \citep{dubey2024llama3}. The model was executed in 4-bit quantized format via \texttt{bitsandbytes} (NF4 quantization, double quantization, float16 compute dtype) on an NVIDIA Tesla T4 GPU (16 GB VRAM) on Google Colab.
+Matched LLM facilitation responses were generated using Meta Llama~3.1~8B~Instruct \citep{dubey2024llama3}. Preprocessing, feature extraction, and statistics were run on a laptop (NVIDIA GeForce RTX 3050 Ti, 4 GB). Response generation was the step run on Google Colab, in 4-bit \texttt{bitsandbytes} format (NF4, double quantization, float16 compute) on an NVIDIA Tesla T4 (16 GB).
 
 For each of the 199 sampled human contexts, a prompt was constructed containing:
 \begin{enumerate}
