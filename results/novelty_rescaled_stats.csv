@@ -1,4 +1,0 @@
-Comparison,Human_Mdn,LLM_Mdn,U,r,p_raw,p_Bonferroni,Significant,Direction
-Human vs LLM T=0.3,0.371,0.2933,30016.0,-0.5159,5.48e-19,9.87e-18,True,Human > LLM
-Human vs LLM T=0.7,0.371,0.2964,30438.5,-0.5373,1.86e-20,3.34e-19,True,Human > LLM
-Human vs LLM T=1.0,0.371,0.292,30536.0,-0.5422,8.34e-21,1.50e-19,True,Human > LLM
