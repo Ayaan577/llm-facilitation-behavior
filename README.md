@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://python.org)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](notebooks/colab_llm_inference.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Ayaan577/llm-facilitation-behavior/blob/main/notebooks/colab_llm_inference.ipynb)
 
 Official code and dataset repository for the paper:
 > **Human and LLM Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison**
@@ -15,7 +15,7 @@ Official code and dataset repository for the paper:
 
 Large language models are increasingly being explored as facilitators, but the behavioral differences between LLM-generated and human facilitation remain insufficiently characterized. This repository supports a context-matched computational comparison of human Project Manager facilitation turns from scenario-based AMI design meetings and Llama 3.1 8B Instruct responses across 199 paired contexts. Five confirmatory dimensions were tested with paired Wilcoxon signed-rank tests and one Bonferroni correction: a result is significant when its raw $p$ is below $0.010$, equivalently when $p_\text{Bonf}=\min(1,5p)$ is below $0.05$. Human facilitation was higher on contextual semantic distance ($r = 0.644$) and hedge-and-empathy lexical density ($r = 0.203$, raw $p = 0.00415$, $p_\text{Bonf} = 0.021$). Llama-generated facilitation was higher on topic divergence ($r = 0.703$), surface lexical elaboration ($r = 0.288$, length-confounded), and instruction-conditioned phase-vocabulary alignment ($r = 0.382$). Directiveness is exploratory only because domain validation failed ($\kappa = -0.02$). A secondary no-phase check left the Llama-higher phase contrast in place ($r = 0.294$) and did not establish spontaneous phase awareness. These are computational language measures, not measures of facilitation quality.
 
-The authoritative manuscript is [`arxiv_submission/main.tex`](arxiv_submission/main.tex), compiled as [`paper/main.pdf`](paper/main.pdf). Earlier draft files have been removed from this repository.
+The compiled manuscript is [`paper/main.pdf`](paper/main.pdf).
 
 ---
 
@@ -69,19 +69,15 @@ llm-facilitation-behavior/
 ├── notebooks/
 │   └── colab_llm_inference.ipynb           # Free T4 GPU generation notebook on Colab
 ├── figures/
-│   ├── figure1_violin_distributions.png    # Figure 1: Violin plots across 6 dimensions
-│   ├── figure2_correlation_matrix.png      # Figure 2: Inter-dimension Spearman correlations
-│   ├── figure3_pca_biplot.png              # Exploratory PCA of behavioral scores
-│   ├── figure4_temperature_heatmap.png     # Figure 4: Temperature sensitivity heatmap
-│   ├── figure5_radar_profiles.png          # Mean scores, one scale per dimension
-│   ├── figure6_effect_forest.png           # Signed effect sizes for the five confirmatory tests
-│   └── figure7_nophase_means.png           # Human, label-present, and no-label phase means
-├── arxiv_submission/                       # Source to upload to arXiv
-│   ├── main.tex
-│   ├── references.bib
-│   └── figures/
+│   ├── figure1_violin_distributions.png    # Preprint Figure 2: score distributions
+│   ├── figure2_correlation_matrix.png      # Appendix: Spearman correlations
+│   ├── figure3_pca_biplot.png              # Appendix: exploratory PCA
+│   ├── figure4_temperature_heatmap.png     # Appendix: descriptive temperature associations
+│   ├── figure5_radar_profiles.png          # Preprint Figure 3: mean scores
+│   ├── figure6_effect_forest.png           # Preprint Figure 1: signed effect sizes
+│   └── figure7_nophase_means.png           # Preprint Figure 4: no-phase means
 ├── paper/
-│   └── main.pdf                            # Compiled preprint
+│   └── main.pdf                            # Compiled manuscript
 ├── validation/
 │   ├── directiveness_annotation_task.csv  # Stratified 100 AMI move validation sample
 │   ├── directiveness_annotation_filled.csv# Filled human annotations
@@ -151,7 +147,7 @@ python scripts/validate_reproduction.py
 
 | Parameter | Value |
 |---|---|
-| **Corpus** | AMI Meeting Corpus (139 sessions) |
+| **Corpus** | AMI scenario meetings. Candidate moves span 139 of the transcribed sessions |
 | **Candidate Moves** | 2,685 candidate facilitation moves |
 | **Sampled Contexts** | 199 moves (149 Ideate, 50 Prototype/Evaluate; no Empathize/Define turns) |
 | **Context Window** | Preceding 5 turns (T-5 to T-1), max 180 words truncation |
@@ -160,14 +156,14 @@ python scripts/validate_reproduction.py
 | **Hardware** | Laptop: NVIDIA GeForce RTX 3050 Ti (4 GB) for analysis. Generation only: Tesla T4 (16 GB) on Google Colab |
 | **Generation Settings** | `do_sample=True`, `top_p=0.9`, `max_new_tokens=150`, temperatures = `[0.3, 0.7, 1.0]` |
 | **No-phase generation** | Same settings, phase line removed, seed 42. File: `data/llm_responses_nophase.csv`. Secondary only. |
-| **Quality Filter** | Min length 5 words, refusal detection, $<90\%$ n-gram overlap |
-| **Random Seeds** | `numpy=42`, `sklearn=42`, `LDA=42`, `subsampling=42` |
+| **Quality Filter** | At least 5 words, refusal-phrase check, and rejection when more than 90% of response words also appear in the context |
+| **Random Seeds** | Bootstrap intervals and LDA refits use seed 42. The no-phase generation used seed 42. A seed for the primary generation is not recorded. The 199 contexts are the stored response identifiers, not a new random draw |
 
 ---
 
 ## Behavioral Feature Definitions
 
-1. **Contextual semantic distance (`novel_score`):** $1 - \cos(\mathbf{e}_{\text{ctx}}, \mathbf{e}_{\text{resp}})$ in `all-MiniLM-L6-v2` space (human median 0.742, LLM $T=0.7$ median 0.593). TF–IDF cosine distance does not reproduce this contrast. This is not a creativity score.
+1. **Contextual semantic distance (`novel_score`):** $1 - \cos(\mathbf{e}_{\text{ctx}}, \mathbf{e}_{\text{resp}})$ in `all-MiniLM-L6-v2` space (human median 0.742, LLM $T=0.7$ median 0.593). TF–IDF cosine distance does not reproduce this contrast. The result is specific to that embedding space.
 2. **Directiveness (`directive_score`):** $P(\text{directive})$ from a DistilBERT classifier trained on 197 synthetic examples. Domain validation on 100 AMI utterances failed ($\kappa = -0.0231$). Exploratory only.
 3. **Lexical elaboration (`specificity_score`):** Mean of NER density, type–token ratio, and normalized average word length. A surface proxy, substantially associated with response length.
 4. **Hedge and empathy lexical density (`empathy_score`):** Empathy-word and hedge-word hits divided by tokens. Hedge-dominated. Not psychological empathy.
