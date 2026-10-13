@@ -7,7 +7,7 @@
 Official code and dataset repository for the paper:
 > **Human and LLM Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison**
 >
-> *Mohammed Azeez Khan, Aaron D'Souza, Ashutosh Mishra, Ummul Faiz Z. Bibi, Neha K. Nair, and Amar Kumar Behera*
+> *Mohammed Azeez Khan, Aaron D'Souza, Ashutosh Mishra, Ummul Faiz Z. Bibi, and Neha K. Nair*
 
 ---
 
@@ -73,9 +73,9 @@ llm-facilitation-behavior/
 │   ├── figure2_correlation_matrix.png      # Appendix: Spearman correlations
 │   ├── figure3_pca_biplot.png              # Appendix: exploratory PCA
 │   ├── figure4_temperature_heatmap.png     # Appendix: descriptive temperature associations
-│   ├── figure5_radar_profiles.png          # Preprint Figure 3: mean scores
+│   ├── figure5_radar_profiles.png          # Appendix Figure 7: mean scores
 │   ├── figure6_effect_forest.png           # Preprint Figure 1: signed effect sizes
-│   └── figure7_nophase_means.png           # Preprint Figure 4: no-phase means
+│   └── figure7_nophase_means.png           # Preprint Figure 3: no-phase means
 ├── paper/
 │   └── main.pdf                            # Compiled manuscript
 ├── validation/
@@ -156,7 +156,7 @@ python scripts/validate_reproduction.py
 | **Hardware** | Laptop: NVIDIA GeForce RTX 3050 Ti (4 GB) for analysis. Generation only: Tesla T4 (16 GB) on Google Colab |
 | **Generation Settings** | `do_sample=True`, `top_p=0.9`, `max_new_tokens=150`, temperatures = `[0.3, 0.7, 1.0]` |
 | **No-phase generation** | Same settings, phase line removed, seed 42. File: `data/llm_responses_nophase.csv`. Secondary only. |
-| **Quality Filter** | At least 5 words, refusal-phrase check, and rejection when more than 90% of response words also appear in the context |
+| **Quality Filter** | At least 5 words; none of the refusal phrases `as an ai`, `i cannot`, `i'm unable`, `i am unable`, `i don't have`, `as a language model`, or `i'm just`; and, when the context has more than 10 words, rejection if more than 90% of the response word types also appear in the context |
 | **Random Seeds** | Bootstrap intervals and LDA refits use seed 42. The no-phase generation used seed 42. A seed for the primary generation is not recorded. The 199 contexts are the stored response identifiers, not a new random draw |
 
 ---
@@ -165,7 +165,7 @@ python scripts/validate_reproduction.py
 
 1. **Contextual semantic distance (`novel_score`):** $1 - \cos(\mathbf{e}_{\text{ctx}}, \mathbf{e}_{\text{resp}})$ in `all-MiniLM-L6-v2` space (human median 0.742, LLM $T=0.7$ median 0.593). TF–IDF cosine distance does not reproduce this contrast. The result is specific to that embedding space.
 2. **Directiveness (`directive_score`):** $P(\text{directive})$ from a DistilBERT classifier trained on 197 synthetic examples. Domain validation on 100 AMI utterances failed ($\kappa = -0.0231$). Exploratory only.
-3. **Lexical elaboration (`specificity_score`):** Mean of NER density, type–token ratio, and normalized average word length. A surface proxy, substantially associated with response length.
+3. **Lexical elaboration** (column `specificity_score`): Mean of NER density, type–token ratio, and normalized average word length. A surface proxy, substantially associated with response length.
 4. **Hedge and empathy lexical density (`empathy_score`):** Empathy-word and hedge-word hits divided by tokens. Hedge-dominated. Not psychological empathy.
 5. **Topic divergence (`divergence_score`):** Jensen–Shannon distance between 15-topic LDA distributions. Greater divergence is not a creativity result.
 6. **Phase-vocabulary alignment (`phase_score`):** Proportion of tokens matching the phase vocabulary. The primary contrast is instruction-conditioned.
@@ -190,9 +190,8 @@ Filenames keep their original numbers. The preprint numbers them by order of app
 
 - **Preprint Figure 1:** `figures/figure6_effect_forest.png` — Signed effect sizes. Negative values are human-higher.
 - **Preprint Figure 2:** `figures/figure1_violin_distributions.png` — Score distributions at $T = 0.7$.
-- **Preprint Figure 3:** `figures/figure5_radar_profiles.png` — Mean scores, one scale per dimension.
-- **Preprint Figure 4:** `figures/figure7_nophase_means.png` — Human, label-present, and no-label phase means.
-- **Appendix:** `figures/figure2_correlation_matrix.png`, `figures/figure3_pca_biplot.png` (exploratory PCA of behavioral scores), and `figures/figure4_temperature_heatmap.png`. These are not the main result.
+- **Preprint Figure 3:** `figures/figure7_nophase_means.png` — Human, label-present, and no-label phase means.
+- **Appendix:** `figures/figure2_correlation_matrix.png`, `figures/figure3_pca_biplot.png` (exploratory PCA of behavioral scores), `figures/figure4_temperature_heatmap.png`, and `figures/figure5_radar_profiles.png` (mean scores, one scale per dimension). These are not the main result.
 
 ---
 
@@ -201,7 +200,7 @@ Filenames keep their original numbers. The preprint numbers them by order of app
 ```bibtex
 @article{khan2026llm_facilitation,
   title   = {Human and {LLM} Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison},
-  author  = {Khan, Mohammed Azeez and D'Souza, Aaron and Mishra, Ashutosh and Bibi, Ummul Faiz Z. and Nair, Neha K. and Behera, Amar Kumar},
+  author  = {Khan, Mohammed Azeez and D'Souza, Aaron and Mishra, Ashutosh and Bibi, Ummul Faiz Z. and Nair, Neha K.},
   journal = {arXiv preprint},
   year    = {2026},
   url     = {https://github.com/Ayaan577/llm-facilitation-behavior}

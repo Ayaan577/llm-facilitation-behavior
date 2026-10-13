@@ -16,8 +16,6 @@ authors:
     given-names: Ummul Faiz Z.
   - family-names: Nair
     given-names: Neha K.
-  - family-names: Behera
-    given-names: Amar Kumar
 repository-code: https://github.com/Ayaan577/llm-facilitation-behavior
 url: https://github.com/Ayaan577/llm-facilitation-behavior
 keywords:
@@ -49,8 +47,6 @@ preferred-citation:
       given-names: Ummul Faiz Z.
     - family-names: Nair
       given-names: Neha K.
-    - family-names: Behera
-      given-names: Amar Kumar
   journal: arXiv preprint
   year: 2026
   status: under-review

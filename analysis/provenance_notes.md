@@ -2,10 +2,10 @@
 
 **Study title:** Human and LLM Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison
 
-**Authoritative manuscript:** `paper/main_ieee.tex`  
-**Superseded draft:** `paper/main_chb.tex` still reports the original unpaired Mann–Whitney analysis. Do not cite it.
+**Authoritative manuscript:** `paper/main.pdf`  
+**Superseded draft:** The earlier unpaired Mann–Whitney draft has been removed from this repository. Do not cite it. `results/mannwhitney_results.csv` keeps its historical filename and stores the paired Wilcoxon results.
 
-The primary test is a paired Wilcoxon signed-rank comparison of human Project Manager turns and Llama 3.1 8B Instruct responses at temperature 0.7, with one Bonferroni correction across five confirmatory dimensions. `results/mannwhitney_results.csv` keeps its historical filename. It stores the paired Wilcoxon results.
+The primary test is a paired Wilcoxon signed-rank comparison of human Project Manager turns and Llama 3.1 8B Instruct responses at temperature 0.7, with one Bonferroni correction across five confirmatory dimensions.
 
 ## Pipeline
 
