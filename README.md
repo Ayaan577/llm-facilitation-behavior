@@ -7,7 +7,7 @@
 Official code and dataset repository for the paper:
 > **Human and LLM Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison**
 >
-> *Mohammed Azeez Khan, Aaron D'Souza, Ashutosh Mishra, Ummul Faiz Z. Bibi, and Neha K. Nair*
+> *Mohammed Azeez Khan, Aaron D'Souza, Ashutosh Mishra, Ummul Faiz Z. Bibi, Neha K. Nair, and Arshaan Khan*
 
 ---
 
@@ -200,7 +200,7 @@ Filenames keep their original numbers. The preprint numbers them by order of app
 ```bibtex
 @article{khan2026llm_facilitation,
   title   = {Human and {LLM} Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison},
-  author  = {Khan, Mohammed Azeez and D'Souza, Aaron and Mishra, Ashutosh and Bibi, Ummul Faiz Z. and Nair, Neha K.},
+  author  = {Khan, Mohammed Azeez and D'Souza, Aaron and Mishra, Ashutosh and Bibi, Ummul Faiz Z. and Nair, Neha K. and Khan, Arshaan},
   journal = {arXiv preprint},
   year    = {2026},
   url     = {https://github.com/Ayaan577/llm-facilitation-behavior}
