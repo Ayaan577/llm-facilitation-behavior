@@ -8,7 +8,7 @@ type: software
 authors:
   - family-names: Khan
     given-names: Mohammed Azeez
-  - family-names: "D'Souza"
+  - family-names: Dsouza
     given-names: Aaron
   - family-names: Mishra
     given-names: Ashutosh
@@ -16,8 +16,6 @@ authors:
     given-names: Ummul Faiz Z.
   - family-names: Nair
     given-names: Neha K.
-  - family-names: Khan
-    given-names: Arshaan
 repository-code: https://github.com/Ayaan577/llm-facilitation-behavior
 url: https://github.com/Ayaan577/llm-facilitation-behavior
 keywords:
@@ -41,7 +39,7 @@ preferred-citation:
   authors:
     - family-names: Khan
       given-names: Mohammed Azeez
-    - family-names: "D'Souza"
+    - family-names: Dsouza
       given-names: Aaron
     - family-names: Mishra
       given-names: Ashutosh
@@ -49,9 +47,9 @@ preferred-citation:
       given-names: Ummul Faiz Z.
     - family-names: Nair
       given-names: Neha K.
-    - family-names: Khan
-      given-names: Arshaan
-  journal: arXiv preprint
   year: 2026
-  status: under-review
-  url: https://github.com/Ayaan577/llm-facilitation-behavior
+  identifiers:
+    - type: other
+      value: "arXiv:2610.13082"
+      description: "archivePrefix=arXiv; primaryClass=cs.LG"
+  url: https://arxiv.org/abs/2610.13082
