@@ -198,12 +198,14 @@ Filenames keep their original numbers. The preprint numbers them by order of app
 ## Citation
 
 ```bibtex
-@article{khan2026llm_facilitation,
-  title   = {Human and {LLM} Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison},
-  author  = {Khan, Mohammed Azeez and D'Souza, Aaron and Mishra, Ashutosh and Bibi, Ummul Faiz Z. and Nair, Neha K. and Khan, Arshaan},
-  journal = {arXiv preprint},
-  year    = {2026},
-  url     = {https://github.com/Ayaan577/llm-facilitation-behavior}
+@misc{khan2026humanllmfacilitationcollaborative,
+      title={Human and LLM Facilitation in Collaborative Design Meetings: A Computational Behavioral Comparison}, 
+      author={Mohammed Azeez Khan and Aaron Dsouza and Ashutosh Mishra and Ummul Faiz Z. Bibi and Neha K. Nair and Arshaan Khan},
+      year={2026},
+      eprint={2610.13082},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2610.13082}, 
 }
 ```
 
